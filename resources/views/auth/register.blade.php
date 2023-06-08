@@ -64,7 +64,7 @@
                 
                 <div class="mt-4">
                     <x-jet-label for="nit" value="{{ __('NIT') }}" />
-                    <x-jet-input id="nit" class="block mt-1 w-full" type="text" name="nit" type="text" minlength="999999999" data-error="" maxlength="9999999999" placeholder="8-0000000"  />
+                    <x-jet-input id="nit" class="block mt-1 w-full" type="text" name="nit" type="text" minlength="9" data-error="" maxlength="9999999999" placeholder="8-0000000"  />
                 </div>  
 
                 <div class="mt-4">
