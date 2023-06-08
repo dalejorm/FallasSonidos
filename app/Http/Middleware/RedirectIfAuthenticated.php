@@ -20,10 +20,17 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
+        $authUser = Auth::user();
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                error_log('Create entro 2');
+                if($authUser->active == false){
+                    error_log('Create entro 3');
+                    Auth::logout();
+                    return redirect()->route('login')->with('status', __('El usuario está desactivado.'));
+                } else {
+                    return redirect(RouteServiceProvider::HOME);
+                }                
             }
         }
 
