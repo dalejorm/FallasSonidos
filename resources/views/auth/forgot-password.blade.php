@@ -31,4 +31,5 @@
             </div>
         </form>
     </x-jet-authentication-card>
+    <x-footer />
 </x-guest-layout>
