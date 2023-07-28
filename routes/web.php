@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GestionUsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+
+// rutas para acceder a gestion de usuarios
+Route::resource('gestion-usuarios', GestionUsuarioController::class)->parameters(['gestion-usuarios' => 'gestion-usuario']);
+// rutas para acceder a gestion de fallas
+Route::resource('gestion-fallas', GestionFallaController::class)->parameters(['gestion-fallas' => 'gestion-falla']); 
+
 });

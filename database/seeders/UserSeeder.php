@@ -19,14 +19,11 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@mail.com',
             'password' => Hash::make('admin123'),
-            'tipo_documento' => 'cc',
-            'numero_documento' => '10000000',
-            'numero_celular' => '3000000000',
-            'intereses' => '["investigar"]',
-            'biografia' => 'None',
-            'cvlac' => 'None',
-            'esta_habilitado' => 1,
-            'autorizacion_tratamiento_datos' => 1
+            'document_type' => 'cc',
+            'document_number' => '10000000',
+            'cellphone_number' => '3000000000',
+            'role' => '0',
+            'active' => '1'
         ]);
     }
 }

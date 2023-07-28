@@ -1,3 +1,8 @@
+@php
+
+$authUser = Auth::user();
+
+@endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +18,15 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Buscador') }}
+                    </x-jet-nav-link>
+                    @if ($authUser->hasRole([0]))
+                    <x-jet-nav-link href="{{ route('gestion-usuarios.index') }} " :active="request()->routeIs('gestion-usuarios.index')">
+                        {{ __('Gestión de Usuarios') }}
+                    </x-jet-nav-link>
+                    @endif
+                    <x-jet-nav-link href="{{ route('gestion-fallas.index') }}" :active="request()->routeIs('gestion-fallas.index')">
+                        {{ __('Gestion de fallas y ruidos') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -138,7 +151,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Buscador') }}
             </x-jet-responsive-nav-link>
         </div>
 

@@ -1,4 +1,4 @@
-<title>Gestión de Usuarios</title>
+<title>Gestión de Fallas y Ruidos</title>
 <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
 	<!--Replace with your tailwind.css once created-->
 
@@ -102,7 +102,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Usuarios del sistema') }}
+            {{ __('Fallas y Ruidos registrados') }}
         </h2>
     </x-slot>    
 
@@ -112,8 +112,8 @@
         <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
             <th scope="col" class="px-6 py-4"># Documento</th>
-            <th scope="col" class="px-6 py-4">Nombre</th>
-            <th scope="col" class="px-6 py-4">Correo</th>
+            <th scope="col" class="px-6 py-4">Nombre Falla</th>
+            <th scope="col" class="px-6 py-4">Descripción</th>
             <th scope="col" class="px-6 py-4">Estado</th>
             <th scope="col" class="px-6 py-4">Acciones</th>
             </tr>

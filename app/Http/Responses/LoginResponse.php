@@ -38,10 +38,16 @@ class LoginResponse implements LoginResponseContract
             break;
 
             case $authUser->hasRole(3):
+                error_log('Entro al rol 3');
                 return redirect()->route('dashboard');
             break;
 
             case $authUser->hasRole(4):
+                return redirect()->route('dashboard');
+            break;
+
+            case $authUser->hasRole(0):
+                error_log('Entro al rol 0');
                 return redirect()->route('dashboard');
             break;
 
