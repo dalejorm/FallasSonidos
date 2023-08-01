@@ -101,17 +101,22 @@
 	</style>
 <x-app-layout>
     <x-slot name="header">
+        <div class="grid grid-cols-2 content-around">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Fallas y Ruidos registrados') }}
         </h2>
+        <a href="{{ route('gestion-fallas.create') }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-center">
+        Crear nuevo registro de falla y ruido
+        </a>
+        </div>
+        
     </x-slot>    
 
     <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
         
-        <table id="userTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+        <table id="fallasTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
         <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
-            <th scope="col" class="px-6 py-4"># Documento</th>
             <th scope="col" class="px-6 py-4">Nombre Falla</th>
             <th scope="col" class="px-6 py-4">Descripción</th>
             <th scope="col" class="px-6 py-4">Estado</th>
@@ -119,19 +124,19 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($users as $user)
+        @foreach ($fallas as $falla)
         <tr class="border-b dark:border-neutral-500">
-            <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $user->document_number }}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{ $user->name}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{ $user->email}}</td>
+            <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $falla->nombre_falla }}</td>
+            <td class="whitespace-nowrap px-6 py-4">{{ $falla->diagnostico_falla}}</td>
+            <td class="whitespace-nowrap px-6 py-4">{{ $falla->estado}}</td>
 
             <td class="whitespace-nowrap px-6 py-4">
-            @if($user->active == 1)
+            @if($falla->estado == 1)
             <div class="flex items-center">
                 <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Activo
             </div>
             @endif
-            @if($user->active == 0)
+            @if($falla->estado == 0)
             <div class="flex items-center">
                 <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Innactivo
             </div>
@@ -149,7 +154,7 @@
                         </a>
                     </div>
                 </div> -->
-                @if($user->active == 1)
+                @if($falla->estado == 1)
                 <div class="flex item-center justify-center">
                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Desactivar">
                     
@@ -169,7 +174,7 @@
                 </div>
                 @endif
 
-                @if($user->active == 0)
+                @if($falla->estado == 0)
                 <div class="flex item-center justify-center">
                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Activar">
                     <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
@@ -214,7 +219,7 @@
 <script>
     $(document).ready(function() {
 
-        var table = $('#userTable').DataTable({
+        var table = $('#fallasTable').DataTable({
                 responsive: true
             })
             .columns.adjust()
