@@ -18,6 +18,7 @@ class ReporteFalla extends Model
      */
     protected $fillable = [
         'tipo_vehiculo',
+        'id_user',
         'linea',
         'modelo',
         'Kilometraje',

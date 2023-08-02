@@ -30,6 +30,7 @@ class CreateReporteFallasTable extends Migration
             $table->string('nombre_falla');
             $table->string('diagnostico_falla');
             $table->string('sistema_falla');
+            $table->string('tipo_sistema');
             $table->string('elemento_falla');
             $table->string('descripcion_reparacion');
             $table->string('gragacion_principal', 1024);

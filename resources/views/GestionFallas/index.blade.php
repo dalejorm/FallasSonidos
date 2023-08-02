@@ -119,6 +119,7 @@
             <tr>
             <th scope="col" class="px-6 py-4">Nombre Falla</th>
             <th scope="col" class="px-6 py-4">Descripción</th>
+            <th scope="col" class="px-6 py-4">Grabación principal falla</th>
             <th scope="col" class="px-6 py-4">Estado</th>
             <th scope="col" class="px-6 py-4">Acciones</th>
             </tr>
