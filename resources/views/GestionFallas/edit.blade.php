@@ -247,7 +247,7 @@
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     {{-- Lugar de grabación #2 en el vehiculo --}}                    
                     <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion2" value="Lugar de grabación #2 en el vehiculo" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="ubicacion_grabacion2" name="ubicacion_grabacion2" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
+                    <x-jet-input id="ubicacion_grabacion2" value="{{ isset($reportefalla->ubicacion_grabacion2) ? $reportefalla->ubicacion_grabacion2 : old('ubicacion_grabacion2') }}" name="ubicacion_grabacion2" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
                     <x-jet-input-error for="ubicacion_grabacion2" class="mt-2" />                    
                 </div>
                 @if($reportefalla->gragacion_3 != null)
@@ -270,7 +270,7 @@
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     {{-- Lugar de grabación #3 en el vehiculo --}}                    
                     <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion3" value="Lugar de grabación #3 en el vehiculo" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="ubicacion_grabacion3" name="ubicacion_grabacion3" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
+                    <x-jet-input id="ubicacion_grabacion3" value="{{ isset($reportefalla->ubicacion_grabacion3) ? $reportefalla->ubicacion_grabacion3 : old('ubicacion_grabacion3') }}" name="ubicacion_grabacion3" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
                     <x-jet-input-error for="ubicacion_grabacion3" class="mt-2" />                    
                 </div>
                 @if($reportefalla->gragacion_4 != null)
@@ -293,7 +293,7 @@
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     {{-- Lugar de grabación #4 en el vehiculo --}}                    
                     <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion4" value="Lugar de grabación #4 en el vehiculo" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="ubicacion_grabacion4" name="ubicacion_grabacion4" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
+                    <x-jet-input id="ubicacion_grabacion4" value="{{ isset($reportefalla->ubicacion_grabacion4) ? $reportefalla->ubicacion_grabacion4 : old('ubicacion_grabacion4') }}" name="ubicacion_grabacion4" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
                     <x-jet-input-error for="ubicacion_grabacion4" class="mt-2" />                    
                 </div>
                 @if($reportefalla->gragacion_5 != null)
@@ -316,7 +316,7 @@
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     {{-- Lugar de grabación #5 en el vehiculo --}}                    
                     <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion5" value="Lugar de grabación #5 en el vehiculo" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="ubicacion_grabacion5" name="ubicacion_grabacion5" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
+                    <x-jet-input id="ubicacion_grabacion5" value="{{ isset($reportefalla->ubicacion_grabacion5) ? $reportefalla->ubicacion_grabacion5 : old('ubicacion_grabacion5') }}" name="ubicacion_grabacion5" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
                     <x-jet-input-error for="ubicacion_grabacion5" class="mt-2" />                    
                 </div>
                 <div class="grid grid-cols-3 w-full md:w-1/2 px-3">

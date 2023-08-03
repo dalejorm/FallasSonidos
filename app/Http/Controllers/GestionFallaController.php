@@ -138,25 +138,89 @@ class GestionFallaController extends Controller
     }
 
     public function update(ReporteFallaRequest $request, ReporteFalla $gestionfalla){
-        error_log($gestionfalla->id); 
-        $variableEstado = null;
-        error_log($request->get('estado')); 
-        if($request->get('estado') == 'Aprobar'){
-            error_log("Ingreso a aprobar");             
-            $reportefalla->where('id', $falla)->update(['estado'=> 'Aprobado']);
-            $variableEstado = 'Aprobado';
+        error_log($gestionfalla->gragacion_5);
+        $user               = auth()->user(); 
+        $gestionfalla->tipo_vehiculo = $request->get('tipo_vehiculo');
+        $gestionfalla->linea = $request->get('linea');
+        $gestionfalla->modelo = $request->get('modelo');
+        $gestionfalla->Kilometraje = $request->get('Kilometraje');
+        $gestionfalla->marca = $request->get('marca');
+        $gestionfalla->cilindraje = $request->get('cilindraje');
+        $gestionfalla->tipo_combustible = $request->get('tipo_combustible');
+        $gestionfalla->transmision = $request->get('transmision');
+        $gestionfalla->direccion = $request->get('direccion');
+        $gestionfalla->descripcionusuario_falla = $request->get('descripcionusuario_falla');
+        $gestionfalla->nombre_falla = $request->get('nombre_falla');
+        $gestionfalla->diagnostico_falla = $request->get('diagnostico_falla');
+        $gestionfalla->sistema_falla = $request->get('sistema_falla');
+        if($gestionfalla->sistema_falla == "Suspensión"){
+            $gestionfalla->tipo_sistema = $request->get('tipo_sistema2');
         }
-        if($request->get('estado') == 'Rechazar'){ 
-            error_log("Ingreso a rechazar");            
-            $reportefalla->where('id', $falla)->update(['estado'=> 'Rechazado']);
-            $variableEstado = 'Rechazado';
+        if($gestionfalla->sistema_falla == "Frenos"){
+            $gestionfalla->tipo_sistema = $request->get('tipo_sistema1');
         }
-        if($request->get('estado') == null){
-            error_log($gestionfalla); 
-        }
-       
-        return redirect()->route('gestion-fallas.index')->with('estado', "Se actualizo el estado del registro a: $variableEstado" );
+        if($gestionfalla->sistema_falla == "Carrocería"){
+            $gestionfalla->tipo_sistema = $request->get('tipo_sistema3');
+        }        
+        $gestionfalla->elemento_falla = $request->get('elemento_falla');
+        $gestionfalla->descripcion_reparacion = $request->get('descripcion_reparacion');
+        $gestionfalla->ubicacion_grabacionprincipal = $request->get('ubicacion_grabacionprincipal');
+        $gestionfalla->ubicacion_grabacion2 = $request->get('ubicacion_grabacion2');
+        $gestionfalla->ubicacion_grabacion3 = $request->get('ubicacion_grabacion3');
+        $gestionfalla->ubicacion_grabacion4 = $request->get('ubicacion_grabacion4');
+        $gestionfalla->ubicacion_grabacion5 = $request->get('ubicacion_grabacion5');
         
+        if($user->hasRole([0])){
+            $gestionfalla->estado = "Aprobado";
+        } else{
+            $gestionfalla->estado = "Pendiente aprobacion";
+        }
+        
+        //error_log($reportefalla);
+        
+        if($request->hasFile('gragacion_principal')){
+            Storage::delete("public/$gestionfalla->gragacion_principal");
+            $audio1= $request->file('gragacion_principal')->store('biblio_grabaciones','public');
+            $gestionfalla->gragacion_principal = $audio1;
+        }
+
+        $audio2= $request->get('gragacion_2');
+        if($request->hasFile('gragacion_2')){
+            Storage::delete("public/$gestionfalla->gragacion_2");
+            $audio2= $request->file('gragacion_2')->store('biblio_grabaciones','public');
+            $gestionfalla->gragacion_2 = $audio2;
+        }
+
+        $audio3= $request->get('gragacion_3');
+        if($request->hasFile('gragacion_3')){
+            Storage::delete("public/$gestionfalla->gragacion_3");
+            $audio3= $request->file('gragacion_3')->store('biblio_grabaciones','public');
+            $gestionfalla->gragacion_3 = $audio3;
+        }
+
+        $audio4= $request->get('gragacion_4');
+        if($request->hasFile('gragacion_4')){
+            Storage::delete("public/$gestionfalla->gragacion_4");
+            $audio4= $request->file('gragacion_4')->store('biblio_grabaciones','public');
+            $gestionfalla->gragacion_4 = $audio4;
+        }
+
+        $audio5= $request->get('gragacion_5');
+        if($request->hasFile('gragacion_5')){
+            Storage::delete("public/$gestionfalla->gragacion_5");
+            $audio5= $request->file('gragacion_5')->store('biblio_grabaciones','public');
+            $gestionfalla->gragacion_5 = $audio5;
+        }
+        
+        error_log("=======================================================================");
+        error_log($gestionfalla->gragacion_5);
+
+        if ($gestionfalla->save()) {
+            return redirect()->route('gestion-fallas.index')->with('estado', "Se actualizo la información del registro" );
+        } else {
+            error_log('entro al error de almacenamiento');
+            return redirect()->back()->with('estado', 'Hubo un error almacenando los cambios');
+        }
     }
 
     /**

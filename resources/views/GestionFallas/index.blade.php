@@ -172,7 +172,7 @@
                             @if($user->id == $falla->id_user)
                                 <div class="flex item-center justify-center">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">                
-                                        <a href="{{ route('gestion-fallas.edit', [$falla->id]) }}" data-te-toggle="tooltip" title="Editar">
+                                        <a href="{{ route('gestion-fallas.edit', [$falla]) }}" data-te-toggle="tooltip" title="Editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                         </svg>
@@ -184,7 +184,7 @@
                                 <div class="flex item-center justify-center">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Aprobar">
                                     
-                                    <form action="{{ route('gestion-fallas.update', [$falla->id]) }}" method="POST">
+                                    <form action="{{ route('aprobacion-fallas.update', [$falla]) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <input hidden id="active" name="estado" type="text" value="Aprobar"/>
@@ -201,7 +201,7 @@
                                 <div class="flex item-center justify-center">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Rechazar">
                                     
-                                    <form action="{{ route('gestion-fallas.update', [$falla->id]) }}" method="POST">
+                                    <form action="{{ route('aprobacion-fallas.update', [$falla]) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <input hidden id="active" name="estado" type="text" value="Rechazar"/>
@@ -220,7 +220,7 @@
                             @if($falla->estado == "Pendiente eliminar")
                                 <div class="flex item-center justify-center">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Activar">
-                                    <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
+                                    <form action="{{ route('aprobacion-fallas.update', [$falla]) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <input hidden id="active" name="active" type="text" value="{{ $user->active }}"/>
@@ -238,8 +238,7 @@
                         @endif
                         @if(!$user->hasRole([0]))
                             <div class="flex item-center justify-center">
-                                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                    <span>{{ $falla->linea }}</span>                
+                                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">            
                                     <a href="{{ route('gestion-fallas.edit', [$falla]) }}" data-te-toggle="tooltip" title="Editar">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
