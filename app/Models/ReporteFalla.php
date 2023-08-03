@@ -17,6 +17,7 @@ class ReporteFalla extends Model
      * @var string[]
      */
     protected $fillable = [
+        'id',
         'tipo_vehiculo',
         'id_user',
         'linea',

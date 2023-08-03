@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\ReporteFalla;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ReporteFallaRequest;
-use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class GestionFallaController extends Controller
 {
@@ -20,9 +21,14 @@ class GestionFallaController extends Controller
     {
         //$this->authorize('index_ideas_empresa', IdeaEmpresa::class);
 
-        $user               = auth()->user();       
-        $fallas       = ReporteFalla::orderBy('nombre_falla', 'ASC')->paginate(10);         
-
+        $user               = auth()->user();
+        $fallas; 
+        if($user->hasRole([0])){
+            $fallas       = ReporteFalla::orderBy('nombre_falla', 'ASC')->paginate(10);        
+        }
+        if(!$user->hasRole([0])){
+            $fallas       = ReporteFalla::where('id_user', '=',$user->id )->paginate(10);        
+        }       
         return view('GestionFallas.index', compact('fallas','user'));
     }
 
@@ -83,7 +89,13 @@ class GestionFallaController extends Controller
         $reportefalla->ubicacion_grabacion3 = $request->get('ubicacion_grabacion3');
         $reportefalla->ubicacion_grabacion4 = $request->get('ubicacion_grabacion4');
         $reportefalla->ubicacion_grabacion5 = $request->get('ubicacion_grabacion5');
-        $reportefalla->estado = "Pendiente aprobacion";
+        
+        if($user->hasRole([0])){
+            $reportefalla->estado = "Aprobado";
+        } else{
+            $reportefalla->estado = "Pendiente aprobacion";
+        }
+        
         //error_log($reportefalla);
         
         if($request->hasFile('gragacion_principal')){
@@ -123,13 +135,44 @@ class GestionFallaController extends Controller
             error_log('entro al error de almacenamiento');
             return redirect()->back()->with('estado', 'Hubo un error almacenando el registro');
         }
-
-
-        
-        
-        
-        
-
     }
+
+    public function update(ReporteFallaRequest $request, ReporteFalla $gestionfalla){
+        error_log($gestionfalla->id); 
+        $variableEstado = null;
+        error_log($request->get('estado')); 
+        if($request->get('estado') == 'Aprobar'){
+            error_log("Ingreso a aprobar");             
+            $reportefalla->where('id', $falla)->update(['estado'=> 'Aprobado']);
+            $variableEstado = 'Aprobado';
+        }
+        if($request->get('estado') == 'Rechazar'){ 
+            error_log("Ingreso a rechazar");            
+            $reportefalla->where('id', $falla)->update(['estado'=> 'Rechazado']);
+            $variableEstado = 'Rechazado';
+        }
+        if($request->get('estado') == null){
+            error_log($gestionfalla); 
+        }
+       
+        return redirect()->route('gestion-fallas.index')->with('estado', "Se actualizo el estado del registro a: $variableEstado" );
+        
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\ReporteFalla  $reportefalla
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(ReporteFalla $gestionfalla){
+        $user = auth()->user(); 
+        //error_log($user->id);
+        //$reportefalla = ReporteFalla::where('id', '=',$falla)->first();
+        $reportefalla = $gestionfalla;       
+        return view('GestionFallas.edit', compact('reportefalla', 'user'));
+    }
+
+
 
 }

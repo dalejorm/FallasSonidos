@@ -32,6 +32,6 @@ Route::middleware([
 // rutas para acceder a gestion de usuarios
 Route::resource('gestion-usuarios', GestionUsuarioController::class)->parameters(['gestion-usuarios' => 'gestion-usuario']);
 // rutas para acceder a gestion de fallas
-Route::resource('gestion-fallas', GestionFallaController::class)->parameters(['gestion-fallas' => 'gestion-falla']); 
+Route::resource('gestion-fallas', GestionFallaController::class)->parameters(['gestion-fallas' => 'gestionfalla']); 
 
 });

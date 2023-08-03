@@ -24,6 +24,12 @@ class ReporteFallaRequest extends FormRequest
     public function rules()    {
 
         error_log('ingreso request');
+
+        if ($this->isMethod('PUT')) {
+            return [                
+               // 'estado'   => 'required|string|max:191|min:5'
+            ];
+        } else{        
         
             return [                
                 'tipo_vehiculo'=> 'required|string|max:191|min:4',
@@ -44,7 +50,7 @@ class ReporteFallaRequest extends FormRequest
                 'gragacion_principal' => 'mimes:mp3|max:1024',
                 'ubicacion_grabacionprincipal'=> 'required|string|max:191|min:5',
             ];
-        
+        }        
 
     }   
 

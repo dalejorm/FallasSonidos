@@ -17,8 +17,8 @@ class LoginResponse implements LoginResponseContract
         // the user can be located with Auth facade
 
         $authUser = Auth::user();
-        error_log('rol 1');
-        error_log($authUser);
+        error_log($authUser->role);
+        error_log($authUser->hasRole(0));
 
         // ? Validamos si el usuario esta activo o inactivo para ingresar en la plataforma
         if($authUser->active == false){
@@ -52,8 +52,7 @@ class LoginResponse implements LoginResponseContract
             break;
 
             default:
-            error_log('Entro al default 1');
-                return redirect()->route('/');
+                return redirect()->route('dashboard');
             break;
         }
 

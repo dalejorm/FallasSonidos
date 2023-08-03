@@ -125,94 +125,149 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($fallas as $falla)
-        <tr class="border-b dark:border-neutral-500">
-            <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $falla->nombre_falla }}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{ $falla->diagnostico_falla}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{ $falla->estado}}</td>
+        @foreach ($fallas as $falla)               
+                <tr class="border-b dark:border-neutral-500">
+                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $falla->nombre_falla}}</td>
+                    <td class="whitespace-nowrap px-6 py-4">{{ $falla->diagnostico_falla}}</td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        <audio controls>
+                           <source src="{{asset('storage') . '/' .  $falla->gragacion_principal}}" type="audio/ogg">
+                        </audio>
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                    @if($falla->estado == "Aprobado")
+                    <div class="flex items-center">
+                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> {{ $falla->estado}}
+                    </div>
+                    @endif
+                    @if($falla->estado == "Pendiente aprobacion")
+                    <div class="flex items-center">
+                        <div class="h-2.5 w-2.5 rounded-full bg-gray-500 mr-2"></div> {{ $falla->estado}}
+                    </div>
+                    @endif
+                    @if($falla->estado == "Pendiente eliminar")
+                    <div class="flex items-center">
+                        <div class="h-2.5 w-2.5 rounded-full bg-yellow-500 mr-2"></div> {{ $falla->estado}}
+                    </div>
+                    @endif
+                    @if($falla->estado == "Rechazado")
+                    <div class="flex items-center">
+                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> {{ $falla->estado}}
+                    </div>
+                    @endif   
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                         
+                        <div class="flex item-center justify-center">
+                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">                
+                                <a href="{{ route('gestion-fallas.show', [$falla]) }}" data-te-toggle="tooltip" title="Detallar">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                </a>
+                            </div>
+                        </div>
+                        @if($user->hasRole([0]))
+                            @if($user->id == $falla->id_user)
+                                <div class="flex item-center justify-center">
+                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">                
+                                        <a href="{{ route('gestion-fallas.edit', [$falla->id]) }}" data-te-toggle="tooltip" title="Editar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                        </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                            @if($falla->estado == "Pendiente aprobacion")
+                                <div class="flex item-center justify-center">
+                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Aprobar">
+                                    
+                                    <form action="{{ route('gestion-fallas.update', [$falla->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input hidden id="active" name="estado" type="text" value="Aprobar"/>
 
-            <td class="whitespace-nowrap px-6 py-4">
-            @if($falla->estado == 1)
-            <div class="flex items-center">
-                <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Activo
-            </div>
-            @endif
-            @if($falla->estado == 0)
-            <div class="flex items-center">
-                <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Innactivo
-            </div>
-            @endif  
-            </td>
-            <td class="whitespace-nowrap px-6 py-4">
-                <!-- 
-                <div class="flex item-center justify-center">
-                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">                
-                        <a href="{{ route('gestion-usuarios.show', [$user]) }}" data-te-toggle="tooltip" title="Detallar">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        </a>
-                    </div>
-                </div> -->
-                @if($falla->estado == 1)
-                <div class="flex item-center justify-center">
-                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Desactivar">
-                    
-                    <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <input hidden id="active" name="active" type="text" value="{{ $user->active }}"/>
-                    <input hidden id="accion" name="accion" type="text" value="estado"/>
+                                        <button type="submit" class="">                       
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                        </svg>  
+                                        </button>
+                                    </form>
+                                    </div>
+                                </div>
 
-                        <button type="submit" class="">                       
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-                            </svg>  
-                        </button>
-                    </form>
-                    </div>
-                </div>
-                @endif
+                                <div class="flex item-center justify-center">
+                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Rechazar">
+                                    
+                                    <form action="{{ route('gestion-fallas.update', [$falla->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input hidden id="active" name="estado" type="text" value="Rechazar"/>
 
-                @if($falla->estado == 0)
-                <div class="flex item-center justify-center">
-                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Activar">
-                    <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <input hidden id="active" name="active" type="text" value="{{ $user->active }}"/>
-                    <input hidden id="accion" name="accion" type="text" value="estado"/>
-                        <button type="submit" class="">   
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-                            </svg>                                                    
-                        </button>
-                    </form>
-                    </div>
-                </div>
-                @endif
-                <!-- 
-                <div class="flex item-center justify-center">
-                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                        <a href="{{ route('gestion-usuarios.show', [$user, 'a0']) }}" data-te-toggle="tooltip" title="Eliminar">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                        </svg>                                                   
-                        </a>
-                    </div>
-                </div> -->
-            </td>
-            </tr>
+                                        <button type="submit" class="">                       
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+    
+                                        </button>
+                                    </form>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if($falla->estado == "Pendiente eliminar")
+                                <div class="flex item-center justify-center">
+                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Activar">
+                                    <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input hidden id="active" name="active" type="text" value="{{ $user->active }}"/>
+                                    <input hidden id="accion" name="accion" type="text" value="estado"/>
+                                        <button type="submit" class="">   
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                                            </svg>                                                    
+                                        </button>
+                                    </form>
+                                    </div>
+                                </div>
+                            @endif
+                            
+                        @endif
+                        @if(!$user->hasRole([0]))
+                            <div class="flex item-center justify-center">
+                                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                    <span>{{ $falla->linea }}</span>                
+                                    <a href="{{ route('gestion-fallas.edit', [$falla]) }}" data-te-toggle="tooltip" title="Editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                    </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                        <!-- 
+                        <div class="flex item-center justify-center">
+                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                <a href="{{ route('gestion-usuarios.show', [$user, 'a0']) }}" data-te-toggle="tooltip" title="Eliminar">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                </svg>                                                   
+                                </a>
+                            </div>
+                        </div> -->
+                        
+                    </td>
+                </tr> 
         @endforeach
         </tbody>
         </table>
-                                
-                
     </div>
 
-    <!-- jQuery -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <!--Datatables -->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
