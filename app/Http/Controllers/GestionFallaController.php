@@ -237,6 +237,19 @@ class GestionFallaController extends Controller
         return view('GestionFallas.edit', compact('reportefalla', 'user'));
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Producto  $producto
+     * @return \Illuminate\Http\Response
+     */
+    public function show(ReporteFalla $gestionfalla)
+    {
+        $user       = auth()->user();
+        $reportefalla = $gestionfalla;
+        return view('GestionFallas.show', compact('reportefalla','user'));
+    }
+
 
 
 }
