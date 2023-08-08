@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');            
             $table->rememberToken();
             $table->foreignId('role')->nullable();
+            $table->foreign('role')->references('id')->on('roles')->onUpdate('cascade');
             $table->foreignId('id_tc')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->boolean('active');

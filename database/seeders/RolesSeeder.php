@@ -15,6 +15,11 @@ class RolesSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
+            'name' => 'administrador',
+            'guard_name' => 'web',
+        ]);
+        
+        DB::table('roles')->insert([
             'name' => 'instructor',
             'guard_name' => 'web',
         ]);
@@ -33,10 +38,6 @@ class RolesSeeder extends Seeder
             'name' => 'tallerconcesionario',
             'guard_name' => 'web',
         ]);
-
-        DB::table('roles')->insert([
-            'name' => 'administrador',
-            'guard_name' => 'web',
-        ]);
+        
     }
 }

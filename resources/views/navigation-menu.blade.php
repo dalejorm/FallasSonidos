@@ -1,6 +1,14 @@
 @php
 
 $authUser = Auth::user();
+if ($authUser->hasRole([1])){
+    error_log("test");
+    error_log($authUser->role);
+} else{
+    error_log($authUser->role);
+    error_log("error");
+    error_log($authUser);
+}
 
 @endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
@@ -20,7 +28,7 @@ $authUser = Auth::user();
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Buscador') }}
                     </x-jet-nav-link>
-                    @if ($authUser->hasRole([0]))
+                    @if ($authUser->role == 1)
                     <x-jet-nav-link href="{{ route('gestion-usuarios.index') }} " :active="request()->routeIs('gestion-usuarios.index')">
                         {{ __('Gestión de Usuarios') }}
                     </x-jet-nav-link>
