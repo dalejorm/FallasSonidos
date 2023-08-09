@@ -26,6 +26,7 @@ class AprobacionFallaRequest extends FormRequest
         error_log('ingreso request de aprobacion');
 
         if ($this->isMethod('PUT')) {
+            error_log('ingreso request a put');
             return [                
                 'estado'   => 'required|string|max:191|min:5'
             ];

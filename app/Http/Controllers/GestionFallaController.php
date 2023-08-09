@@ -22,11 +22,11 @@ class GestionFallaController extends Controller
         //$this->authorize('index_ideas_empresa', IdeaEmpresa::class);
 
         $user               = auth()->user();
-        $fallas; 
-        if($user->hasRole([0])){
+        $fallas;
+        if ($user->role == 1) {
             $fallas       = ReporteFalla::orderBy('nombre_falla', 'ASC')->paginate(10);        
         }
-        if(!$user->hasRole([0])){
+        if ($user->role != 1) {
             $fallas       = ReporteFalla::where('id_user', '=',$user->id )->paginate(10);        
         }       
         return view('GestionFallas.index', compact('fallas','user'));
@@ -89,8 +89,7 @@ class GestionFallaController extends Controller
         $reportefalla->ubicacion_grabacion3 = $request->get('ubicacion_grabacion3');
         $reportefalla->ubicacion_grabacion4 = $request->get('ubicacion_grabacion4');
         $reportefalla->ubicacion_grabacion5 = $request->get('ubicacion_grabacion5');
-        
-        if($user->hasRole([0])){
+        if ($user->role == 1) {
             $reportefalla->estado = "Aprobado";
         } else{
             $reportefalla->estado = "Pendiente aprobacion";
@@ -169,8 +168,7 @@ class GestionFallaController extends Controller
         $gestionfalla->ubicacion_grabacion3 = $request->get('ubicacion_grabacion3');
         $gestionfalla->ubicacion_grabacion4 = $request->get('ubicacion_grabacion4');
         $gestionfalla->ubicacion_grabacion5 = $request->get('ubicacion_grabacion5');
-        
-        if($user->hasRole([0])){
+        if ($user->role == 1) {
             $gestionfalla->estado = "Aprobado";
         } else{
             $gestionfalla->estado = "Pendiente aprobacion";
@@ -248,6 +246,52 @@ class GestionFallaController extends Controller
         $user       = auth()->user();
         $reportefalla = $gestionfalla;
         return view('GestionFallas.show', compact('reportefalla','user'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Producto  $producto
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(ReporteFalla $gestionfalla)
+    {
+        $user               = auth()->user();   
+        //$this->authorize('destroy_producto', [Producto::class, $producto]);
+        error_log($gestionfalla->estado);
+        $mensaje= null;
+        if($gestionfalla->estado == "Pendiente aprobacion"){
+            error_log("Se puede eliminar");
+            Storage::delete('public/' . $gestionfalla->gragacion_principal);
+            if($gestionfalla->gragacion_2 == null){
+                Storage::delete('public/' . $gestionfalla->gragacion_2);
+            }
+            if($gestionfalla->gragacion_3 == null){
+                Storage::delete('public/' . $gestionfalla->gragacion_3);
+            }
+            if($gestionfalla->gragacion_4 == null){
+                Storage::delete('public/' . $gestionfalla->gragacion_4);
+            }
+            if($gestionfalla->gragacion_5 == null){
+                Storage::delete('public/' . $gestionfalla->gragacion_5);
+            }
+            $gestionfalla->delete();
+            $mensaje= "Registro eliminado correctamente";
+        } else {
+            error_log("Se solicito eliminación");
+            $gestionfalla->where('id', $gestionfalla->id)->update(['estado'=> 'Pendiente eliminar']);
+            $mensaje= "Se solicito eliminación al administrador";
+        }
+        $fallas=null;
+        if ($user->role == 1) {
+            $fallas       = ReporteFalla::orderBy('nombre_falla', 'ASC')->paginate(10);        
+        }
+        if ($user->role != 1) {
+            $fallas       = ReporteFalla::where('id_user', '=',$user->id )->paginate(10);        
+        }        
+        return redirect()->route('gestion-fallas.index')->with('estado', "$mensaje" );
+        //return view('GestionFallas.index', compact('fallas','user'))->with('estado', $mensaje);
+        //return redirect()->route('GestionFallas.index')->with('estado', $mensaje);
     }
 
 

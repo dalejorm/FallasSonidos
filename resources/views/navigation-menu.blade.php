@@ -1,15 +1,5 @@
 @php
-
 $authUser = Auth::user();
-if ($authUser->hasRole([1])){
-    error_log("test");
-    error_log($authUser->role);
-} else{
-    error_log($authUser->role);
-    error_log("error");
-    error_log($authUser);
-}
-
 @endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->

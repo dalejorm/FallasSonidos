@@ -8,349 +8,288 @@
         
     </x-slot>
 
-    <form action="{{ route('gestion-fallas.update', [$reportefalla]) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-    <div id='recipients' class="static w-max p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
-        <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Datos del vehículo</h2>
-        <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">
-            
-            <div class="flex flex-wrap -mx-3 mb-6">
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Tipo vehiculo --}}   
-                    <x-jet-label class="inline-block mb-4" for="tipo vehiculo" value="tipo vehiculo" /><span class="inline-block text-red-500">*</span>
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tipo_vehiculo" name="tipo_vehiculo" required>
-                        <option value="Vehículo" {{ $reportefalla->tipo_vehiculo == 'Vehículo' ? 'selected' : '' }}>Vehículo</option>
-                        <option value="Camioneta" {{ $reportefalla->tipo_vehiculo == 'Camioneta' ? 'selected' : '' }}>Camioneta</option>
-                        </select>                        
-                    </div>
+    
+<div id='recipients' class="static w-max p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Datos del vehículo</h2>
+    <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">
+        
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Tipo vehiculo --}}   
+                <x-jet-label class="inline-block mb-4" for="tipo vehiculo" value="tipo vehiculo" /><span class="inline-block text-red-500">:</span>
+                <div class="relative">
+                    <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->tipo_vehiculo }}</p>                                               
                 </div>
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- linea --}}                    
-                    <x-jet-label class="inline-block mb-4" for="linea" value="Linea" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="linea" name="linea" class="block w-full" value="{{ isset($reportefalla->linea) ? $reportefalla->linea : old('linea') }}" type="text" placeholder="Línea" data-error="" minlength="5" maxlength="190" required />
-                    <x-jet-input-error for="linea" class="mt-2" />                    
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- linea --}}                    
+                <x-jet-label class="inline-block mb-4" for="linea" value="Linea" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->linea }}</p>                                           
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Modelo --}}                    
+                <x-jet-label class="inline-block mb-4" for="modelo" value="modelo" /><span class="inline-block text-red-500">:</span>
+                <div class="relative">
+                    <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->modelo }}</p>                                               
                 </div>
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Modelo --}}                    
-                    <x-jet-label class="inline-block mb-4" for="modelo" value="modelo" /><span class="inline-block text-red-500">*</span>
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="modelo" name="modelo" required>
-                        <option value="2023" {{ $reportefalla->modelo == '2023' ? 'selected' : '' }}>2023</option>
-                        <option value="2022" {{ $reportefalla->modelo == '2022' ? 'selected' : '' }}>2022</option>
-                        <option value="2021" {{ $reportefalla->modelo == '2021' ? 'selected' : '' }}>2021</option>
-                        <option value="2020" {{ $reportefalla->modelo == '2020' ? 'selected' : '' }}>2020</option>
-                        </select>                        
-                    </div>
-                </div>
+            </div>
 
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Kilometraje --}}                    
-                    <x-jet-label class="inline-block mb-4" for="Kilometraje" value="Kilometraje" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="Kilometraje" name="Kilometraje" value="{{ isset($reportefalla->Kilometraje) ? $reportefalla->Kilometraje : old('Kilometraje') }}" class="block w-full" type="text" placeholder="Kilometraje" data-error="" minlength="4" maxlength="190" required />
-                    <x-jet-input-error for="Kilometraje" class="mt-2" />                    
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Kilometraje --}}                    
+                <x-jet-label class="inline-block mb-4" for="Kilometraje" value="Kilometraje" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->Kilometraje }}</p>                                        
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Marca --}}                    
+                <x-jet-label class="inline-block mb-4" for="Marca" value="Marca" /><span class="inline-block text-red-500">*</span>
+                <div class="relative">
+                    <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->marca }}</p>                                                
                 </div>
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Marca --}}                    
-                    <x-jet-label class="inline-block mb-4" for="Marca" value="Marca" /><span class="inline-block text-red-500">*</span>
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="marca" name="marca" required>
-                        <option value="Nissan" {{ $reportefalla->marca == 'Nissan' ? 'selected' : '' }}>Nissan</option>
-                        <option value="Jeep" {{ $reportefalla->marca == 'Jeep' ? 'selected' : '' }}>Jeep</option>
-                        <option value="Suzuky" {{ $reportefalla->marca == 'Suzuky' ? 'selected' : '' }}>Suzuky</option>
-                        <option value="Mazda" {{ $reportefalla->marca == 'Mazda' ? 'selected' : '' }}>Mazda</option>
-                        </select>                        
-                    </div>
-                </div>
+            </div>
 
-                <div class="w-full md:w-1/2 px-3  mb-6 md:mb-0">
-                {{-- cilindraje --}}                    
-                    <x-jet-label class="inline-block mb-4" for="cilindraje" value="cilindraje" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="cilindraje" name="cilindraje" value="{{ isset($reportefalla->cilindraje) ? $reportefalla->cilindraje : old('cilindraje') }}" class="block w-full" type="text" placeholder="Cilindraje" data-error="" minlength="4" maxlength="190" required />
-                    <x-jet-input-error for="cilindraje" class="mt-2" />  
-                </div>
+            <div class="w-full md:w-1/2 px-3  mb-6 md:mb-0">
+            {{-- cilindraje --}}                    
+                <x-jet-label class="inline-block mb-4" for="cilindraje" value="cilindraje" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->cilindraje }}</p>
+            </div>
 
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Tipo combustible --}}                    
-                    <x-jet-label class="inline-block mb-4" for="Tipo combustible" value="Tipo combustible" /><span class="inline-block text-red-500">*</span>                    
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tipo_combustible" name="tipo_combustible" required>
-                        <option value="Gasolina" {{ $reportefalla->tipo_combustible == 'Gasolina' ? 'selected' : '' }}>Gasolina</option>
-                        <option value="Diesel" {{ $reportefalla->tipo_combustible == 'Diesel' ? 'selected' : '' }}>Diesel</option>
-                        </select>                        
-                    </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Tipo combustible --}}                    
+                <x-jet-label class="inline-block mb-4" for="Tipo combustible" value="Tipo combustible" /><span class="inline-block text-red-500">:</span>                    
+                <div class="relative">
+                    <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->tipo_combustible }}</p>                  
                 </div>
+            </div>
 
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Transmisión--}}                    
-                    <x-jet-label class="inline-block mb-4" for="Transmisión" value="Transmisión" /><span class="inline-block text-red-500">*</span>           
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="transmision" name="transmision" required>
-                        <option value="Manual" {{ $reportefalla->transmision == 'Manual' ? 'selected' : '' }}>Manual</option>
-                        <option value="Automatica" {{ $reportefalla->transmision == 'Automatica' ? 'selected' : '' }}>Automatica</option>
-                        </select>                        
-                    </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Transmisión--}}                    
+                <x-jet-label class="inline-block mb-4" for="Transmisión" value="Transmisión" /><span class="inline-block text-red-500">:</span>           
+                <div class="relative">
+                    <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->transmision }}</p>                
                 </div>
+            </div>
 
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                     {{-- Tipo de dirección--}}                    
-                    <x-jet-label class="inline-block mb-4" for="Tipo de dirección" value="Tipo de dirección" /><span class="inline-block text-red-500">*</span>           
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="direccion" name="direccion" required>
-                        <option value="Mecánica" {{ $reportefalla->direccion == 'Mecánica' ? 'selected' : '' }}>Mecánica</option>
-                        <option value="Hidráulica" {{ $reportefalla->direccion == 'Hidráulica' ? 'selected' : '' }}>Hidráulica</option>
-                        <option value="Electro asistida" {{ $reportefalla->direccion == 'Electro asistida' ? 'selected' : '' }}>Electro asistida</option>
-                        </select>                        
-                    </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    {{-- Tipo de dirección--}}                    
+                <x-jet-label class="inline-block mb-4" for="Tipo de dirección" value="Tipo de dirección" /><span class="inline-block text-red-500">:</span>           
+                <div class="relative">
+                    <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->direccion }}</p>                       
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id='recipients' class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
-        <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Información de la falla</h2>                
-        <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">                            
-            <div class="flex flex-wrap -mx-3 mb-6">
+<div id='recipients' class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Información de la falla</h2>                
+    <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">                            
+        <div class="flex flex-wrap -mx-3 mb-6">
 
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Nombre de la falla --}}                    
-                    <x-jet-label class="inline-block mb-4" for="Nombre de la falla" value="Nombre de la falla" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="nombre_falla" name="nombre_falla" value="{{ isset($reportefalla->nombre_falla) ? $reportefalla->nombre_falla : old('nombre_falla') }}" class="block w-full" type="text" placeholder="Nombre de la falla" data-error="" minlength="5" maxlength="190" required />
-                    <x-jet-input-error for="Nombre de la falla" class="mt-2" />                    
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Nombre de la falla --}}                    
+                <x-jet-label class="inline-block mb-4" for="Nombre de la falla" value="Nombre de la falla" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->nombre_falla }}</p>          
+            </div>
+            
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Descripción de la falla por parte del usuario --}}                    
+                <x-jet-label class="inline-block mb-4" for="descripcionusuario_falla" value="Descripción de la falla por parte del usuario" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->descripcionusuario_falla }}</p>   
+            </div>
+
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Diagnostico de la Falla --}}                    
+                <x-jet-label class="inline-block mb-4" for="diagnostico_falla" value="Diagnostico de la Falla" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->diagnostico_falla }}</p>                  
+            </div>
+
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Elemento que presento la falla --}}                    
+                <x-jet-label class="inline-block mb-4" for="elemento_falla" value="Elemento que presento la falla" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->elemento_falla }}</p>     
+            </div>              
+
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Sistema de la falla--}}                    
+                <x-jet-label class="inline-block mb-4" for="SistemaFalla" value="Sistema de la falla" /><span class="inline-block text-red-500">:</span>           
+                <div class="relative">
+                    <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->sistema_falla }}</p>                    
                 </div>
-                
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Descripción de la falla por parte del usuario --}}                    
-                    <x-jet-label class="inline-block mb-4" for="descripcionusuario_falla" value="Descripción de la falla por parte del usuario" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="descripcionusuario_falla" name="descripcionusuario_falla" value="{{ isset($reportefalla->descripcionusuario_falla) ? $reportefalla->descripcionusuario_falla : old('descripcionusuario_falla') }}" class="block w-full" type="text" placeholder="Descripción de la falla por parte del usuario" data-error="" minlength="5" maxlength="190" required />
-                    <x-jet-input-error for="descripcionusuario_falla" class="mt-2" />                    
-                </div>
+            </div>
 
+            <div class="hidden" id="tab-frenos">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Diagnostico de la Falla --}}                    
-                    <x-jet-label class="inline-block mb-4" for="diagnostico_falla" value="Diagnostico de la Falla" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="diagnostico_falla" name="diagnostico_falla" value="{{ isset($reportefalla->diagnostico_falla) ? $reportefalla->diagnostico_falla : old('diagnostico_falla') }}" class="block w-full" type="text" placeholder="Diagnostico de la Falla" data-error="" minlength="5" maxlength="190" required />
-                    <x-jet-input-error for="diagnostico_falla" class="mt-2" />                    
-                </div>
-
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Elemento que presento la falla --}}                    
-                    <x-jet-label class="inline-block mb-4" for="elemento_falla" value="Elemento que presento la falla" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="elemento_falla" name="elemento_falla" value="{{ isset($reportefalla->elemento_falla) ? $reportefalla->elemento_falla : old('elemento_falla') }}" class="block w-full" type="text" placeholder="Elemento que presento la falla" data-error="" minlength="5" maxlength="190" required />
-                    <x-jet-input-error for="elemento_falla" class="mt-2" />                    
-                </div>              
-
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Sistema de la falla--}}                    
-                    <x-jet-label class="inline-block mb-4" for="SistemaFalla" value="Sistema de la falla" /><span class="inline-block text-red-500">*</span>           
+                    {{-- Sistema de frenos--}}                    
+                    <x-jet-label class="inline-block mb-4" for="tipo_sistema1" value="Sistema de frenos" /><span class="inline-block text-red-500">:</span>           
                     <div class="relative">
-                        <select id="SistemaFalla" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="sistema_falla" name="sistema_falla" required>
-                        <option value="Frenos" {{ $reportefalla->sistema_falla == 'Frenos' ? 'selected' : '' }}>Frenos</option>
-                        <option value="Suspensión" {{ $reportefalla->sistema_falla == 'Suspensión' ? 'selected' : '' }}>Suspensión</option>
-                        <option value="Carrocería" {{ $reportefalla->sistema_falla == 'Carrocería'? 'selected' : '' }}>Carrocería</option>
-                        </select>                        
+                        <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->tipo_sistema }}</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="hidden" id="tab-frenos">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        {{-- Sistema de frenos--}}                    
-                        <x-jet-label class="inline-block mb-4" for="tipo_sistema1" value="Sistema de frenos" /><span class="inline-block text-red-500">*</span>           
+            <div class="hidden" id="tab-suspension">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    {{-- Sistema de suspensión--}}                    
+                    <x-jet-label class="inline-block mb-4" for="tipo_sistema2" value="Sistema de suspensión" /><span class="inline-block text-red-500">:</span>           
                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tipo_sistema1" name="tipo_sistema1" required>
-                            <option value="Tambor" {{ $reportefalla->tipo_sistema == 'Tambor' ? 'selected' : '' }}>Tambor</option>
-                            <option value="Disco" {{ $reportefalla->tipo_sistema == 'Disco' ? 'selected' : '' }}>Disco</option>
-                            </select>                        
-                        </div>
+                        <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->tipo_sistema }}</p>                       
                     </div>
                 </div>
+            </div>
 
-                <div class="hidden" id="tab-suspension">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        {{-- Sistema de suspensión--}}                    
-                        <x-jet-label class="inline-block mb-4" for="tipo_sistema2" value="Sistema de suspensión" /><span class="inline-block text-red-500">*</span>           
-                         <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tipo_sistema2" name="tipo_sistema2" required>
-                            <option value="Independiente" {{ $reportefalla->tipo_sistema == 'Independiente' ? 'selected' : '' }}>Independiente</option>
-                            <option value="Semi Independiente" {{ $reportefalla->tipo_sistema == 'Semi Independiente' ? 'selected' : '' }}>Semi Independiente</option>
-                            <option value="Rígido" {{ $reportefalla->tipo_sistema == 'Rígido' ? 'selected' : '' }}>Rígido</option>
-                            </select>                        
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hidden" id="tab-carroceria">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        {{-- Tipo de carroceria --}}                    
-                        <x-jet-label class="inline-block mb-4" for="tipo_sistema3" value="Tipo de carroceria" /><span class="inline-block text-red-500">*</span>
-                        <x-jet-input id="tipo_sistema3" name="tipo_sistema3" value="{{ isset($reportefalla->tipo_sistema) ? $reportefalla->tipo_sistema : old('tipo_sistema3') }}" class="block w-full" type="text" placeholder="Diagnostico de la Falla" data-error="" minlength="5" maxlength="190" required />
-                        <x-jet-input-error for="tipo_sistema3" class="mt-2" />                    
-                    </div> 
-                </div>
-
+            <div class="hidden" id="tab-carroceria">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Descripción de la reparación --}}                    
-                    <x-jet-label class="inline-block mb-4" for="descripcion_reparacion" value="Descripción de la reparación" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="descripcion_reparacion" value="{{ isset($reportefalla->descripcion_reparacion) ? $reportefalla->descripcion_reparacion : old('descripcion_reparacion') }}" name="descripcion_reparacion"  class="block w-full" type="text" placeholder="Diagnostico de la Falla" data-error="" minlength="5" maxlength="190" required />
-                    <x-jet-input-error for="descripcion_reparacion" class="mt-2" />                    
-                </div>
+                    {{-- Tipo de carroceria --}}                    
+                    <x-jet-label class="inline-block mb-4" for="tipo_sistema3" value="Tipo de carroceria" /><span class="inline-block text-red-500">:</span>
+                    <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->tipo_sistema }}</p>                 
+                </div> 
+            </div>
 
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Descripción de la reparación --}}                    
+                <x-jet-label class="inline-block mb-4" for="descripcion_reparacion" value="Descripción de la reparación" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->descripcion_reparacion }}</p>        
+            </div>
+
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Grabación principal actual--}}                    
+                <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación principal actual" /><span class="inline-block text-red-500">:</span>
+                <audio controls>
+                        <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_principal}}" type="audio/ogg">
+                </audio>
+            </div>
+
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Lugar de grabación en el vehiculo --}}                    
+                <x-jet-label class="inline-block mb-4" for="ubicacion_grabacionprincipal" value="Lugar de grabación en el vehiculo" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->ubicacion_grabacionprincipal }}</p>           
+            </div>                 
+        </div>                          
+    </div>
+</div>
+
+<div id='recipients' class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Grabaciones extras</h2>   
+    <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8"> 
+                        
+        <div class="flex flex-wrap -mx-3 mb-6">
+            @if($reportefalla->gragacion_2 != null)
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Grabación principal actual--}}                    
-                    <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación principal actual" /><span class="inline-block text-red-500">*</span>
+                    {{-- Grabación #2 actual--}}                    
+                    <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #2 actual" /><span class="inline-block text-red-500">:</span>
                     <audio controls>
-                           <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_principal}}" type="audio/ogg">
+                        <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_2}}" type="audio/ogg">
                     </audio>
                 </div>
+            @endif
 
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Lugar de grabación #2 en el vehiculo --}}                    
+                <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion2" value="Lugar de grabación #2 en el vehiculo" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->ubicacion_grabacion2 }}</p>               
+            </div>
+            @if($reportefalla->gragacion_3 != null)
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Cargar nueva grabación principal --}}                    
-                    <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Cargar nueva grabación principal" /><span class="inline-block text-red-500">*</span>
-                    <input id="gragacion_principal" name="gragacion_principal" class="block w-full" type="file" accept=".mp3" />
-                    <x-jet-input-error for="gragacion_principal" class="mt-2" />
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">MP3 (MAX. 10MB).</p>                    
+                    {{-- Grabación #3 actual--}}                    
+                    <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #3 actual" /><span class="inline-block text-red-500">:</span>
+                    <audio controls>
+                        <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_3}}" type="audio/ogg">
+                    </audio>
                 </div>
+            @endif
+            
 
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Lugar de grabación #3 en el vehiculo --}}                    
+                <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion3" value="Lugar de grabación #3 en el vehiculo" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->ubicacion_grabacion3 }}</p>                    
+            </div>
+            @if($reportefalla->gragacion_4 != null)
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Lugar de grabación en el vehiculo --}}                    
-                    <x-jet-label class="inline-block mb-4" for="ubicacion_grabacionprincipal" value="Lugar de grabación en el vehiculo" /><span class="inline-block text-red-500">*</span>
-                    <x-jet-input id="ubicacion_grabacionprincipal" value="{{ isset($reportefalla->ubicacion_grabacionprincipal) ? $reportefalla->ubicacion_grabacionprincipal : old('ubicacion_grabacionprincipal') }}" name="ubicacion_grabacionprincipal" class="block w-full" type="text"  placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190" required />
-                    <x-jet-input-error for="ubicacion_grabacionprincipal" class="mt-2" />                    
-                </div>                 
-            </div>                          
-        </div>
-    </div>
+                    {{-- Grabación #4 actual--}}                    
+                    <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #4 actual" /><span class="inline-block text-red-500">:</span>
+                    <audio controls>
+                        <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_4}}" type="audio/ogg">
+                    </audio>
+                </div>
+            @endif
 
-    <div id='recipients' class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
-        <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Grabaciones extras</h2>   
-        <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8"> 
-                         
-           <div class="flex flex-wrap -mx-3 mb-6">
-                @if($reportefalla->gragacion_2 != null)
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        {{-- Grabación #2 actual--}}                    
-                        <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #2 actual" /><span class="inline-block text-red-500">*</span>
-                        <audio controls>
-                            <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_2}}" type="audio/ogg">
-                        </audio>
-                    </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Lugar de grabación #4 en el vehiculo --}}                    
+                <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion4" value="Lugar de grabación #4 en el vehiculo" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->ubicacion_grabacion4 }}</p>                     
+            </div>
+            @if($reportefalla->gragacion_5 != null)
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    {{-- Grabación #5 actual--}}                    
+                    <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #5 actual" /><span class="inline-block text-red-500">:</span>
+                    <audio controls>
+                        <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_5}}" type="audio/ogg">
+                    </audio>
+                </div>
+            @endif
+
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Lugar de grabación #5 en el vehiculo --}}                    
+                <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion5" value="Lugar de grabación #5 en el vehiculo" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->ubicacion_grabacion5 }}</p>                     
+            </div>
+            <div class="grid grid-cols-3 w-full md:w-1/2 px-3">
+            @if($reportefalla->estado == "Pendiente aprobacion")
+                @if($user->role == 1)
+                <form action="{{ route('aprobacion-fallas.update', [$reportefalla]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                    <input hidden id="active" name="estado" type="text" value="Aprobar"/>
+                    <button type="submit" class="mx-6 mt-6 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-center">
+                        Aprobar
+                    </button>
+                </form>
                 @endif
-               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Cargar nueva grabación #2 --}}                    
-                    <x-jet-label class="inline-block mb-4" for="gragacion_2" value="Cargar nueva grabación #2" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="gragacion_2" name="gragacion_2" class="block w-full" type="file" accept=".mp3"  />
-                    <x-jet-input-error for="gragacion_2" class="mt-2" />
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">MP3 (MAX. 10MB).</p>                    
-                </div>
+            @endif
+                <div></div>
+            @if($reportefalla->estado == "Pendiente aprobacion")
+                @if($user->role == 1)
+                <form action="{{ route('aprobacion-fallas.update', [$reportefalla]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                    <input hidden id="active" name="estado" type="text" value="Rechazar"/>
+                    <button type="submit" class="mx-6 mt-6 bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded text-center">
+                        Rechazar
+                    </button>
+                </form>
+                @endif
+            @endif
 
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Lugar de grabación #2 en el vehiculo --}}                    
-                    <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion2" value="Lugar de grabación #2 en el vehiculo" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="ubicacion_grabacion2" value="{{ isset($reportefalla->ubicacion_grabacion2) ? $reportefalla->ubicacion_grabacion2 : old('ubicacion_grabacion2') }}" name="ubicacion_grabacion2" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
-                    <x-jet-input-error for="ubicacion_grabacion2" class="mt-2" />                    
-                </div>
-                @if($reportefalla->gragacion_3 != null)
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        {{-- Grabación #3 actual--}}                    
-                        <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #3 actual" /><span class="inline-block text-red-500">*</span>
-                        <audio controls>
-                            <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_3}}" type="audio/ogg">
-                        </audio>
-                    </div>
+            @if($reportefalla->estado == "Pendiente eliminar")
+                @if($user->role == 1)
+                <form action="{{ route('aprobacion-fallas.update', [$reportefalla]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                    <input hidden id="active" name="estado" type="text" value="Autoasignar"/>
+                    <button type="submit" class="mx-6 mt-6 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-center">
+                    Autoasignar
+                    </button>
+                </form>
                 @endif
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Cargar nueva grabación #3 --}}                    
-                    <x-jet-label class="inline-block mb-4" for="gragacion_3" value="Cargar nueva grabación #3" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="gragacion_3" name="gragacion_3" class="block w-full" type="file" accept=".mp3"  />
-                    <x-jet-input-error for="gragacion_3" class="mt-2" />
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">MP3 (MAX. 10MB).</p>                    
-                </div>
-
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Lugar de grabación #3 en el vehiculo --}}                    
-                    <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion3" value="Lugar de grabación #3 en el vehiculo" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="ubicacion_grabacion3" value="{{ isset($reportefalla->ubicacion_grabacion3) ? $reportefalla->ubicacion_grabacion3 : old('ubicacion_grabacion3') }}" name="ubicacion_grabacion3" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
-                    <x-jet-input-error for="ubicacion_grabacion3" class="mt-2" />                    
-                </div>
-                @if($reportefalla->gragacion_4 != null)
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        {{-- Grabación #4 actual--}}                    
-                        <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #4 actual" /><span class="inline-block text-red-500">*</span>
-                        <audio controls>
-                            <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_4}}" type="audio/ogg">
-                        </audio>
-                    </div>
+            @endif
+                <div></div>
+            @if($reportefalla->estado == "Pendiente eliminar")
+                @if($user->role == 1)
+                <form action="{{ route('aprobacion-fallas.update', [$reportefalla]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                    <input hidden id="active" name="estado" type="text" value="Eliminar"/>
+                    <button type="submit" class="mx-6 mt-6 bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded text-center">
+                    Eliminar
+                    </button>
+                </form>
                 @endif
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Cargar nueva grabación #4 --}}                    
-                    <x-jet-label class="inline-block mb-4" for="gragacion_4" value="Cargar nueva grabación #4" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="gragacion_4" name="gragacion_4" class="block w-full" type="file" accept=".mp3"  />
-                    <x-jet-input-error for="gragacion_4" class="mt-2" />
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">MP3 (MAX. 10MB).</p>                    
-                </div>
-
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Lugar de grabación #4 en el vehiculo --}}                    
-                    <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion4" value="Lugar de grabación #4 en el vehiculo" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="ubicacion_grabacion4" value="{{ isset($reportefalla->ubicacion_grabacion4) ? $reportefalla->ubicacion_grabacion4 : old('ubicacion_grabacion4') }}" name="ubicacion_grabacion4" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
-                    <x-jet-input-error for="ubicacion_grabacion4" class="mt-2" />                    
-                </div>
-                @if($reportefalla->gragacion_5 != null)
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        {{-- Grabación #5 actual--}}                    
-                        <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #5 actual" /><span class="inline-block text-red-500">*</span>
-                        <audio controls>
-                            <source src="{{asset('storage') . '/' .  $reportefalla->gragacion_5}}" type="audio/ogg">
-                        </audio>
-                    </div>
-                @endif
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Cargar nueva grabación #5 --}}                    
-                    <x-jet-label class="inline-block mb-4" for="gragacion_5" value="Cargar nueva grabación #5" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="gragacion_5" name="gragacion_5" class="block w-full" type="file" accept=".mp3"  />
-                    <x-jet-input-error for="gragacion_5" class="mt-2" />
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">MP3 (MAX. 10MB).</p>                    
-                </div>
-
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Lugar de grabación #5 en el vehiculo --}}                    
-                    <x-jet-label class="inline-block mb-4" for="ubicacion_grabacion5" value="Lugar de grabación #5 en el vehiculo" /><span class="inline-block text-red-500"></span>
-                    <x-jet-input id="ubicacion_grabacion5" value="{{ isset($reportefalla->ubicacion_grabacion5) ? $reportefalla->ubicacion_grabacion5 : old('ubicacion_grabacion5') }}" name="ubicacion_grabacion5" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
-                    <x-jet-input-error for="ubicacion_grabacion5" class="mt-2" />                    
-                </div>
-                <div class="grid grid-cols-3 w-full md:w-1/2 px-3">
-                @if($reportefalla->estado == "Pendiente aprobacion")
-                    @if($user->hasRole([0]))
-                    <form action="{{ route('aprobacion-fallas.update', [$reportefalla]) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                        <input hidden id="active" name="estado" type="text" value="Aprobar"/>
-                        <button type="submit" class="mx-6 mt-6 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-center">
-                            Aprobar
-                        </button>
-                    </form>
-                    @endif
-                @endif
-                    <div></div>
-                @if($reportefalla->estado == "Pendiente aprobacion")
-                    @if($user->hasRole([0]))
-                    <form action="{{ route('aprobacion-fallas.update', [$reportefalla]) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                        <input hidden id="active" name="estado" type="text" value="Rechazar"/>
-                        <button type="submit" class="mx-6 mt-6 bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded text-center">
-                            Rechazar
-                        </button>
-                    </form>
-                    @endif
-                @endif
-                </div>
+            @endif
             </div>
         </div>
-    </div>      
-    
-</form>
+    </div>
+</div> 
 
     {{-- Alert component --}}
     @if (session('estado'))
