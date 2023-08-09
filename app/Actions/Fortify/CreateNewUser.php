@@ -68,8 +68,8 @@ class CreateNewUser implements CreatesNewUsers
                 $TallerConcesionario->nit                = $input['nit'];
                 $TallerConcesionario->name               = $input['nametc'];
                 $TallerConcesionario->address            = $input['direccion'];
-                $user->role = 4;
-                $user->assignRole(4);
+                $user->role = 5;
+                $user->assignRole(5);
 
                 //obtener id taller para FK de User
             if (TallerConcesionario::where('nit','=', $TallerConcesionario->nit)->exists()){
@@ -84,16 +84,16 @@ class CreateNewUser implements CreatesNewUsers
             } else{                
                 switch ($input['role']) {
                     case 'Ins':
-                        $user->assignRole(1);
-                        $user->role = 1;
-                        break;
-                    case 'Apr':
                         $user->assignRole(2);
                         $user->role = 2;
                         break;
-                    case 'Inv':
+                    case 'Apr':
                         $user->assignRole(3);
                         $user->role = 3;
+                        break;
+                    case 'Inv':
+                        $user->assignRole(4);
+                        $user->role = 4;
                         break;
                 }
             }
