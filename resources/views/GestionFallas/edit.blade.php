@@ -37,10 +37,9 @@
                     <x-jet-label class="inline-block mb-4" for="modelo" value="modelo" /><span class="inline-block text-red-500">*</span>
                     <div class="relative">
                         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="modelo" name="modelo" required>
-                        <option value="2023" {{ $reportefalla->modelo == '2023' ? 'selected' : '' }}>2023</option>
-                        <option value="2022" {{ $reportefalla->modelo == '2022' ? 'selected' : '' }}>2022</option>
-                        <option value="2021" {{ $reportefalla->modelo == '2021' ? 'selected' : '' }}>2021</option>
-                        <option value="2020" {{ $reportefalla->modelo == '2020' ? 'selected' : '' }}>2020</option>
+                        @foreach($anos as $ano)
+                        <option value="{{$ano->name}}" {{ $reportefalla->modelo == $ano->name ? 'selected' : '' }}>{{$ano->name}}</option>
+                        @endforeach
                         </select>                        
                     </div>
                 </div>
@@ -56,10 +55,9 @@
                     <x-jet-label class="inline-block mb-4" for="Marca" value="Marca" /><span class="inline-block text-red-500">*</span>
                     <div class="relative">
                         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="marca" name="marca" required>
-                        <option value="Nissan" {{ $reportefalla->marca == 'Nissan' ? 'selected' : '' }}>Nissan</option>
-                        <option value="Jeep" {{ $reportefalla->marca == 'Jeep' ? 'selected' : '' }}>Jeep</option>
-                        <option value="Suzuky" {{ $reportefalla->marca == 'Suzuky' ? 'selected' : '' }}>Suzuky</option>
-                        <option value="Mazda" {{ $reportefalla->marca == 'Mazda' ? 'selected' : '' }}>Mazda</option>
+                        @foreach($marcas as $marca)
+                        <option value="{{$marca->name}}" {{ $reportefalla->marca == $marca->name ? 'selected' : '' }}>{{$marca->name}}</option>
+                        @endforeach
                         </select>                        
                     </div>
                 </div>
@@ -348,8 +346,10 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tipo_sistema1").required = true; 
             document.getElementById("tab-suspension").classList.add("hidden");
             document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-motor").classList.add("hidden");
             document.getElementById("tipo_sistema2").required = false; 
-            document.getElementById("tipo_sistema3").required = false;                 
+            document.getElementById("tipo_sistema3").required = false;    
+            document.getElementById("tipo_sistema4").required = false;              
         }
         
         if(valueSelector == "Suspensión"){
@@ -357,8 +357,10 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tipo_sistema2").required = true; 
             document.getElementById("tab-frenos").classList.add("hidden");
             document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-motor").classList.add("hidden");
             document.getElementById("tipo_sistema1").required = false; 
-            document.getElementById("tipo_sistema3").required = false; 
+            document.getElementById("tipo_sistema3").required = false;
+            document.getElementById("tipo_sistema4").required = false; 
         }
 
         if(valueSelector == "Carrocería"){
@@ -366,46 +368,72 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tipo_sistema3").required = true; 
             document.getElementById("tab-frenos").classList.add("hidden");
             document.getElementById("tab-suspension").classList.add("hidden");
+            document.getElementById("tab-motor").classList.add("hidden");
             document.getElementById("tipo_sistema2").required = false; 
             document.getElementById("tipo_sistema1").required = false;
+            document.getElementById("tipo_sistema4").required = false;
+        }
+        if(valueSelector == "Motor"){
+            document.getElementById("tab-Motor").classList.remove("hidden"); 
+            document.getElementById("tipo_sistema4").required = true; 
+            document.getElementById("tab-frenos").classList.add("hidden");
+            document.getElementById("tab-suspension").classList.add("hidden");
+            document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tipo_sistema2").required = false; 
+            document.getElementById("tipo_sistema1").required = false;
+            document.getElementById("tipo_sistema3").required = false;
         }
         bandera=100; 
     }
 });
 
-var selector  = document.getElementById("SistemaFalla");            
-selector.addEventListener( 'change', () => {            
-    var valueSelector = selector.value; 
-    console.log("Ingreso al evento " + valueSelector );
-    console.log(valueSelector);
-    if(valueSelector == "Frenos") {
-        console.log("Ingreso a frenos");
-        document.getElementById("tab-frenos").classList.remove("hidden");
-        document.getElementById("tipo_sistema1").required = true; 
-        document.getElementById("tab-suspension").classList.add("hidden");
-        document.getElementById("tab-carroceria").classList.add("hidden");
-        document.getElementById("tipo_sistema2").required = false; 
-        document.getElementById("tipo_sistema3").required = false;                 
-    }
-    
-    if(valueSelector == "Suspensión"){
-        console.log("Ingreso a suspension ");
-        document.getElementById("tab-suspension").classList.remove("hidden"); 
-        document.getElementById("tipo_sistema2").required = true; 
-        document.getElementById("tab-frenos").classList.add("hidden");
-        document.getElementById("tab-carroceria").classList.add("hidden");
-        document.getElementById("tipo_sistema1").required = false; 
-        document.getElementById("tipo_sistema3").required = false; 
-    }
 
-    if(valueSelector == "Carrocería"){
-        console.log("Ingreso a carroceria ");
-        document.getElementById("tab-carroceria").classList.remove("hidden"); 
-        document.getElementById("tipo_sistema3").required = true; 
-        document.getElementById("tab-frenos").classList.add("hidden");
-        document.getElementById("tab-suspension").classList.add("hidden");
-        document.getElementById("tipo_sistema2").required = false; 
-        document.getElementById("tipo_sistema1").required = false;
-    }
-});            
+    var selector  = document.getElementById("SistemaFalla");            
+    selector.addEventListener( 'change', () => {            
+        var valueSelector = selector.value; 
+        console.log("Ingreso al evento " + valueSelector );
+        console.log(valueSelector);
+        if(valueSelector == "Frenos") {
+            document.getElementById("tab-frenos").classList.remove("hidden");
+            document.getElementById("tipo_sistema1").required = true; 
+            document.getElementById("tab-suspension").classList.add("hidden");
+            document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-motor").classList.add("hidden");
+            document.getElementById("tipo_sistema2").required = false; 
+            document.getElementById("tipo_sistema3").required = false;    
+            document.getElementById("tipo_sistema4").required = false;              
+        }
+        
+        if(valueSelector == "Suspensión"){
+            document.getElementById("tab-suspension").classList.remove("hidden"); 
+            document.getElementById("tipo_sistema2").required = true; 
+            document.getElementById("tab-frenos").classList.add("hidden");
+            document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-motor").classList.add("hidden");
+            document.getElementById("tipo_sistema1").required = false; 
+            document.getElementById("tipo_sistema3").required = false;
+            document.getElementById("tipo_sistema4").required = false; 
+        }
+
+        if(valueSelector == "Carrocería"){
+            document.getElementById("tab-carroceria").classList.remove("hidden"); 
+            document.getElementById("tipo_sistema3").required = true; 
+            document.getElementById("tab-frenos").classList.add("hidden");
+            document.getElementById("tab-suspension").classList.add("hidden");
+            document.getElementById("tab-motor").classList.add("hidden");
+            document.getElementById("tipo_sistema2").required = false; 
+            document.getElementById("tipo_sistema1").required = false;
+            document.getElementById("tipo_sistema4").required = false;
+        }
+        if(valueSelector == "Motor"){
+            document.getElementById("tab-motor").classList.remove("hidden"); 
+            document.getElementById("tipo_sistema4").required = true; 
+            document.getElementById("tab-frenos").classList.add("hidden");
+            document.getElementById("tab-suspension").classList.add("hidden");
+            document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tipo_sistema2").required = false; 
+            document.getElementById("tipo_sistema1").required = false;
+            document.getElementById("tipo_sistema3").required = false;
+        }
+    });            
 </script>

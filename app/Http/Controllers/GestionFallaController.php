@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReporteFalla;
+use App\Models\Vehicles;
+use App\Models\Anos;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReporteFallaRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class GestionFallaController extends Controller
@@ -28,7 +31,7 @@ class GestionFallaController extends Controller
         }
         if ($user->role != 1) {
             $fallas       = ReporteFalla::where('id_user', '=',$user->id )->paginate(10);        
-        }       
+        }                
         return view('GestionFallas.index', compact('fallas','user'));
     }
 
@@ -44,7 +47,9 @@ class GestionFallaController extends Controller
 
         $user       = auth()->user();
        // $empresa    = $user->empresa()->first();
-        return view('GestionFallas.create');
+        $marcas = DB::table('vehicles')->orderBy('name', 'asc')->get();
+        $anos =  DB::table('anos')->orderBy('name', 'desc')->get();
+        return view('GestionFallas.create', compact('marcas','anos'));
     }
 
     /**
@@ -55,6 +60,8 @@ class GestionFallaController extends Controller
      */
     public function store(ReporteFallaRequest $request)
     {
+        error_log("test mimes");
+        error_log($request->file('gragacion_principal')->getMimeType());
         $user               = auth()->user(); 
         error_log($user->id);
         error_log('paso el request');
@@ -81,7 +88,10 @@ class GestionFallaController extends Controller
         }
         if($reportefalla->sistema_falla == "Carrocería"){
             $reportefalla->tipo_sistema = $request->get('tipo_sistema3');
-        }        
+        }
+        if($reportefalla->sistema_falla == "Motor"){
+            $reportefalla->tipo_sistema = $request->get('tipo_sistema4');
+        }         
         $reportefalla->elemento_falla = $request->get('elemento_falla');
         $reportefalla->descripcion_reparacion = $request->get('descripcion_reparacion');
         $reportefalla->ubicacion_grabacionprincipal = $request->get('ubicacion_grabacionprincipal');
@@ -137,7 +147,8 @@ class GestionFallaController extends Controller
     }
 
     public function update(ReporteFallaRequest $request, ReporteFalla $gestionfalla){
-        error_log($gestionfalla->gragacion_5);
+        error_log("test mimes");
+        error_log($request->file('gragacion_principal')->getMimeType());
         $user               = auth()->user(); 
         $gestionfalla->tipo_vehiculo = $request->get('tipo_vehiculo');
         $gestionfalla->linea = $request->get('linea');
@@ -160,7 +171,10 @@ class GestionFallaController extends Controller
         }
         if($gestionfalla->sistema_falla == "Carrocería"){
             $gestionfalla->tipo_sistema = $request->get('tipo_sistema3');
-        }        
+        }
+        if($reportefalla->sistema_falla == "Motor"){
+            $reportefalla->tipo_sistema = $request->get('tipo_sistema4');
+        }         
         $gestionfalla->elemento_falla = $request->get('elemento_falla');
         $gestionfalla->descripcion_reparacion = $request->get('descripcion_reparacion');
         $gestionfalla->ubicacion_grabacionprincipal = $request->get('ubicacion_grabacionprincipal');
@@ -231,8 +245,10 @@ class GestionFallaController extends Controller
         $user = auth()->user(); 
         //error_log($user->id);
         //$reportefalla = ReporteFalla::where('id', '=',$falla)->first();
-        $reportefalla = $gestionfalla;       
-        return view('GestionFallas.edit', compact('reportefalla', 'user'));
+        $reportefalla = $gestionfalla;        
+        $marcas = DB::table('vehicles')->orderBy('name', 'asc')->get();
+        $anos =  DB::table('anos')->orderBy('name', 'desc')->get();
+        return view('GestionFallas.edit', compact('reportefalla', 'user','marcas', 'anos'));
     }
 
     /**

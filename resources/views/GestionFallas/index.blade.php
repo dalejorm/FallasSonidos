@@ -128,7 +128,12 @@
         @foreach ($fallas as $falla)               
                 <tr class="border-b dark:border-neutral-500">
                     <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $falla->nombre_falla}}</td>
+                    @if(strlen($falla->diagnostico_falla)>=40)
+                    <td class="whitespace-nowrap px-6 py-4">{{ substr($falla->diagnostico_falla,0,40)}}...</td>
+                    @endif
+                    @if(strlen($falla->diagnostico_falla) < 40)
                     <td class="whitespace-nowrap px-6 py-4">{{ $falla->diagnostico_falla}}</td>
+                    @endif                    
                     <td class="whitespace-nowrap px-6 py-4">
                         <audio controls>
                            <source src="{{asset('storage') . '/' .  $falla->gragacion_principal}}" type="audio/ogg">
