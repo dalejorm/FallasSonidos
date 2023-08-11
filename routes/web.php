@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('terms', function () {
+    return view('terms');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -36,5 +40,7 @@ Route::resource('gestion-usuarios', GestionUsuarioController::class)->parameters
 Route::resource('gestion-fallas', GestionFallaController::class)->parameters(['gestion-fallas' => 'gestionfalla']); 
 
 Route::resource('aprobacion-fallas', AprobacionFallaController::class)->parameters(['aprobacion-fallas' => 'gestionfalla']); 
+
+
 
 });

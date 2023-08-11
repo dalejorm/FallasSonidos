@@ -1,6 +1,10 @@
+@php
+$authUser = Auth::user();
+error_log($authUser); 
+@endphp
 <!-- Footer container -->
 <footer
-  class="bg-neutral-100 -mt-32 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+  class="bg-neutral-100 mt-0 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left" style="display: block;">
   <div
     class="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
   </div>
@@ -28,21 +32,24 @@
           Mapa de sitio
         </h6>
         <p class="mb-4">
-          <a href="" class="text-neutral-600 dark:text-neutral-200"
+          <a href="{{ url('terms') }}" class="text-neutral-600 dark:text-neutral-200"
             >Politica de uso y
             tratamiento de datos</a
           >
         </p>
+        @auth
+
+        @else
         <p class="mb-4">
           <a href="{{ route('register') }}" class="text-neutral-600 dark:text-neutral-200"
-            >Registro de usuarios</a
-          >
+            >Registro de usuarios</a>
+        
         </p>
         <p class="mb-4">
           <a href="" class="text-neutral-600 dark:text-neutral-200"
-            >Recuperacion de Contraseña</a
-          >
-        </p>        
+            >Recuperacion de Contraseña</a>
+        </p>
+        @endauth        
       </div>
       <!-- Contact section -->
       <div>
