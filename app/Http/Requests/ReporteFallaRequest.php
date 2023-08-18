@@ -43,7 +43,7 @@ class ReporteFallaRequest extends FormRequest
                 'sistema_falla'=> 'required|string|max:191|min:4',
                 'elemento_falla'=> 'required|string|max:191|min:4',
                 'descripcion_reparacion' => 'required|string|max:5000|min:10',
-                'gragacion_principal' => 'required|mimetypes:application/octet-stream,audio/mpeg',
+                'gragacion_principal' => 'mimetypes:application/octet-stream,audio/mpeg',
                 'ubicacion_grabacionprincipal'=> 'required|string|max:191|min:5',
                 'gragacion_2' => 'mimetypes:application/octet-stream,audio/mpeg',
                 'ubicacion_grabacion2'=> 'max:191',

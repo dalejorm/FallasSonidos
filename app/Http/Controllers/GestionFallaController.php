@@ -147,8 +147,6 @@ class GestionFallaController extends Controller
     }
 
     public function update(ReporteFallaRequest $request, ReporteFalla $gestionfalla){
-        error_log("test mimes");
-        error_log($request->file('gragacion_principal')->getMimeType());
         $user               = auth()->user(); 
         $gestionfalla->tipo_vehiculo = $request->get('tipo_vehiculo');
         $gestionfalla->linea = $request->get('linea');
@@ -172,8 +170,8 @@ class GestionFallaController extends Controller
         if($gestionfalla->sistema_falla == "Carrocería"){
             $gestionfalla->tipo_sistema = $request->get('tipo_sistema3');
         }
-        if($reportefalla->sistema_falla == "Motor"){
-            $reportefalla->tipo_sistema = $request->get('tipo_sistema4');
+        if($gestionfalla->sistema_falla == "Motor"){
+            $gestionfalla->tipo_sistema = $request->get('tipo_sistema4');
         }         
         $gestionfalla->elemento_falla = $request->get('elemento_falla');
         $gestionfalla->descripcion_reparacion = $request->get('descripcion_reparacion');
@@ -274,6 +272,7 @@ class GestionFallaController extends Controller
     {
         $user               = auth()->user();   
         //$this->authorize('destroy_producto', [Producto::class, $producto]);
+        
         error_log($gestionfalla->estado);
         $mensaje= null;
         if($gestionfalla->estado == "Pendiente aprobacion"){
@@ -294,9 +293,30 @@ class GestionFallaController extends Controller
             $gestionfalla->delete();
             $mensaje= "Registro eliminado correctamente";
         } else {
-            error_log("Se solicito eliminación");
+            if($user->role == "1"){
+                error_log("Se puede eliminar");
+                Storage::delete('public/' . $gestionfalla->gragacion_principal);
+                if($gestionfalla->gragacion_2 == null){
+                    Storage::delete('public/' . $gestionfalla->gragacion_2);
+                }
+                if($gestionfalla->gragacion_3 == null){
+                    Storage::delete('public/' . $gestionfalla->gragacion_3);
+                }
+                if($gestionfalla->gragacion_4 == null){
+                    Storage::delete('public/' . $gestionfalla->gragacion_4);
+                }
+                if($gestionfalla->gragacion_5 == null){
+                    Storage::delete('public/' . $gestionfalla->gragacion_5);
+                }
+                $gestionfalla->delete();
+                $mensaje= "Registro eliminado correctamente";
+            } else{
+                error_log("Se solicito eliminación");
             $gestionfalla->where('id', $gestionfalla->id)->update(['estado'=> 'Pendiente eliminar']);
             $mensaje= "Se solicito eliminación al administrador";
+            }
+
+            
         }
         $fallas=null;
         if ($user->role == 1) {
