@@ -8,7 +8,9 @@ $authUser = Auth::user();
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <p class="text-[#36A9E1] text-3xl font-bold">SGCFRV</p>
+                    <a href="{{ route('dashboard') }}">
+                        <x-jet-application-mark class="block h-9 w-auto" />
+                    </a>
                 </div>
 
                 <!-- Navigation Links -->
