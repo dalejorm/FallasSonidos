@@ -33,6 +33,11 @@ Route::resource('gestion-fallas', GestionFallaController::class)->parameters(['g
 Route::resource('aprobacion-fallas', AprobacionFallaController::class)->parameters(['aprobacion-fallas' => 'gestionfalla']); 
 
 Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/busqueda', [AppController::class, 'busqueda'])->name('busqueda');
+
+//Route::get('/busqueda', 'AppController@busqueda')->name('busqueda');
+
 /*
 Route::middleware([
     'auth:sanctum',
