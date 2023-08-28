@@ -10,7 +10,8 @@ module.exports = {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./src/**/*.{html,js}",
-        "./node_modules/tw-elements/dist/js/**/*.js"
+        "./node_modules/tw-elements/dist/js/**/*.js",
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php'
     ],
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require("tw-elements/dist/plugin.cjs")],
     darkMode: "class",

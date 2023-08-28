@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> 
-            <x-jet-welcome />  
+            <x-welcome />  
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     
                     <div class="mt-8 text-2xl">
@@ -72,7 +72,7 @@
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <div class="container min-w-100px w-auto max-w-900 mx-auto mt-20">
                                 <div class="card flex flex-col items-center bg-gradient-to-r from-cyan-500 to-green-300 p-4 rounded-md text-black" >                               <div class="cover flex flex-col items-center min-w-80px w-auto max-w-880px">
-                                <div class="font-bold text-xl mb-2">{{$res->nombre_falla}}</div>
+                                <div class="font-bold text-xl mb-2"><a href="{{ route('gestion-fallas.show', [$res]) }}">{{$res->nombre_falla}}</a></div>
                                 </div>
                                     <audio class="block w-full max-w-md mx-auto" controls>
                                         <source src="{{asset('storage') . '/' .  $res->gragacion_principal}}" type="audio/ogg">
@@ -90,10 +90,12 @@
                             </div>
                         </div>
                     </div>
+                    
                     @empty
                     <div>No hay resultados de busqueda</div>
                     @endforelse
-
+                  
+                    
 
                 </div>
             </div>

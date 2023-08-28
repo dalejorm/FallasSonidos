@@ -35,9 +35,16 @@ class AppController extends Controller
         $marcas = DB::table('vehicles')->orderBy('name', 'asc')->get();
         $anos =  DB::table('anos')->orderBy('name', 'desc')->get();
 
+        if(is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda == 'nulo' ){
+            error_log("Entro sin nada");
+            $results = ReporteFalla::where('estado','=', 'Aprobado')->get();
+            return view('dashboard', compact('marcas','anos','results'));
+        }
+
        if(!is_null($cadenaBusqueda) and $modeloBusqueda != 'nulo' and $marcaBusqueda != 'nulo' and $sistemaBusqueda != 'nulo' ){
             error_log("Entro completo");
-            $results = ReporteFalla::where('modelo', '=', $modeloBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('modelo', '=', $modeloBusqueda)
             ->where('marca', '=', $marcaBusqueda)
             ->where('sistema_falla', '=', $sistemaBusqueda)
             ->where(function ($query) use ($cadenaBusqueda) {
@@ -49,7 +56,8 @@ class AppController extends Controller
         }
         if(!is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda != 'nulo' and $sistemaBusqueda != 'nulo' ){
             error_log("Entro sin modelo");
-            $results = ReporteFalla::where('marca', '=', $marcaBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('marca', '=', $marcaBusqueda)
             ->where('sistema_falla', '=', $sistemaBusqueda)
             ->where(function ($query) use ($cadenaBusqueda) {
                 $query->orWhere('nombre_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
@@ -61,7 +69,8 @@ class AppController extends Controller
 
         if(!is_null($cadenaBusqueda) and $modeloBusqueda != 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda != 'nulo' ){
             error_log("Entro sin marca");
-            $results = ReporteFalla::where('modelo', '=', $modeloBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('modelo', '=', $modeloBusqueda)
             ->where('sistema_falla', '=', $sistemaBusqueda)
             ->where(function ($query) use ($cadenaBusqueda) {
                 $query->orWhere('nombre_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
@@ -72,7 +81,8 @@ class AppController extends Controller
         } 
         if(!is_null($cadenaBusqueda) and $modeloBusqueda != 'nulo' and $marcaBusqueda != 'nulo' and $sistemaBusqueda == 'nulo' ){
             error_log("Entro sin sistema");
-            $results =  ReporteFalla::where("modelo", "=", $modeloBusqueda)
+            $results =  ReporteFalla::where('estado','=', 'Aprobado')
+            ->where("modelo", "=", $modeloBusqueda)
             ->where("marca", "=", $marcaBusqueda)
             ->where(ReporteFalla::raw("(nombre_falla like '%'.$cadenaBusqueda.'%' or descripcionusuario_falla like '%'.$cadenaBusqueda.'%' or descripcion_reparacion like '%'.$cadenaBusqueda.'%')"))
             ->get();
@@ -81,7 +91,8 @@ class AppController extends Controller
 
         if(is_null($cadenaBusqueda) and $modeloBusqueda != 'nulo' and $marcaBusqueda != 'nulo' and $sistemaBusqueda != 'nulo' ){
             error_log("Entro sin cadena");
-            $results = ReporteFalla::where('modelo', '=', $modeloBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('modelo', '=', $modeloBusqueda)
             ->where('marca', '=', $marcaBusqueda)
             ->where('sistema_falla', '=', $sistemaBusqueda)
             ->get();
@@ -90,7 +101,8 @@ class AppController extends Controller
             
         if(!is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda != 'nulo' ){
             error_log("Entro sin modelo y marca");
-            $results = ReporteFalla::where('sistema_falla', '=', $sistemaBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('sistema_falla', '=', $sistemaBusqueda)
             ->where(function ($query) use ($cadenaBusqueda) {
                 $query->orWhere('nombre_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
                 ->orWhere('descripcionusuario_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
@@ -101,7 +113,8 @@ class AppController extends Controller
 
         if(!is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda != 'nulo' and $sistemaBusqueda == 'nulo' ){
             error_log("Entro sin modelo y sistema");
-            $results = ReporteFalla::where('marca', '=', $marcaBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('marca', '=', $marcaBusqueda)
             ->where(function ($query) use ($cadenaBusqueda) {
                 $query->orWhere('nombre_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
                 ->orWhere('descripcionusuario_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
@@ -112,7 +125,8 @@ class AppController extends Controller
 
         if(!is_null($cadenaBusqueda) and $modeloBusqueda != 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda == 'nulo' ){
             error_log("Entro sin marca y sistema");
-            $results = ReporteFalla::where('modelo', '=', $modeloBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('modelo', '=', $modeloBusqueda)
             ->where(function ($query) use ($cadenaBusqueda) {
                 $query->orWhere('nombre_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
                 ->orWhere('descripcionusuario_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
@@ -123,7 +137,8 @@ class AppController extends Controller
 
         if(is_null($cadenaBusqueda) and $modeloBusqueda != 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda != 'nulo' ){
             error_log("Entro sin cadena y marca");
-            $results = ReporteFalla::where('modelo', '=', $modeloBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('modelo', '=', $modeloBusqueda)
             ->where('sistema_falla', '=', $sistemaBusqueda)
             ->get();
             return view('dashboard', compact('marcas','anos','results'));
@@ -131,14 +146,16 @@ class AppController extends Controller
 
         if(is_null($cadenaBusqueda) and $modeloBusqueda != 'nulo' and $marcaBusqueda != 'nulo' and $sistemaBusqueda == 'nulo' ){
             error_log("Entro sin cadena y sistema");
-            $results = ReporteFalla::where('modelo', '=', $modeloBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('modelo', '=', $modeloBusqueda)
             ->where('marca', '=', $marcaBusqueda)
             ->get();
             return view('dashboard', compact('marcas','anos','results'));
         }
         if(is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda != 'nulo' and $sistemaBusqueda != 'nulo' ){
             error_log("Entro sin cadena y modelo");
-            $results = ReporteFalla::where('marca', '=', $marcaBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('marca', '=', $marcaBusqueda)
             ->where('sistema_falla', '=', $sistemaBusqueda)
             ->get();
             return view('dashboard', compact('marcas','anos','results'));
@@ -146,27 +163,31 @@ class AppController extends Controller
 
         if(is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda != 'nulo' ){
             error_log("Entro solo sistema");
-            $results = ReporteFalla::where('sistema_falla', '=', $sistemaBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('sistema_falla', '=', $sistemaBusqueda)
             ->get();
             return view('dashboard', compact('marcas','anos','results'));
         }
 
         if(is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda != 'nulo' and $sistemaBusqueda == 'nulo' ){
             error_log("Entro solo marca");
-            $results = ReporteFalla::where('marca', '=', $marcaBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('marca', '=', $marcaBusqueda)
             ->get();
             return view('dashboard', compact('marcas','anos','results'));
         }
         if(is_null($cadenaBusqueda) and $modeloBusqueda != 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda == 'nulo' ){
             error_log("Entro solo modelo");
-            $results = ReporteFalla::where('modelo', '=', $modeloBusqueda)
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->where('modelo', '=', $modeloBusqueda)
             ->get();
             return view('dashboard', compact('marcas','anos','results'));
         }
 
         if(!is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda == 'nulo' ){
             error_log("Entro solo cadena");
-            $results = ReporteFalla::Where('nombre_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
+            $results = ReporteFalla::where('estado','=', 'Aprobado')
+            ->Where('nombre_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
             ->orWhere('descripcionusuario_falla' , 'LIKE','%'.$cadenaBusqueda.'%')
             ->orWhere('descripcion_reparacion','LIKE', '%'.$cadenaBusqueda.'%')
             ->get();
