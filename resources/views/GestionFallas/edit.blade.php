@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="grid grid-cols-2 content-around">
+        <div class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow ">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Editar registro de Falla y Ruido') }}
         </h2>        
@@ -8,10 +8,10 @@
         
     </x-slot>
 
-    <form action="{{ route('gestion-fallas.update', [$reportefalla]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('gestion-fallas.update', [$reportefalla]) }}" method="POST" enctype="multipart/form-data" class="max-w-7xl  pb-6 lg:w-11/12  sm:w-full sm:mx-auto ">
     @csrf
     @method('PUT')
-    <div id='recipients' class="static w-max p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <div id='recipients' class="static p-8 mt-6 mx-6 lg:mx-6 bg-white">
         <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Datos del vehículo</h2>
         <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">
             
@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <div id='recipients' class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <div id='recipients' class="static p-8 mt-6 mx-6 rounded shadow lg:mx-6  bg-white">
         <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Información de la falla</h2>                
         <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">                            
             <div class="flex flex-wrap -mx-3 mb-6">
@@ -151,17 +151,16 @@
                     </div>
                 </div>
 
-                <div class="hidden" id="tab-frenos">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        {{-- Sistema de frenos--}}                    
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" id="tab-frenos">
+                    
+                        {{-- Sistema de frenos--}}         
                         <x-jet-label class="inline-block mb-4" for="tipo_sistema1" value="Sistema de frenos" /><span class="inline-block text-red-500">*</span>           
                         <div class="relative">
                             <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tipo_sistema1" name="tipo_sistema1" required>
                             <option value="Tambor" {{ $reportefalla->tipo_sistema == 'Tambor' ? 'selected' : '' }}>Tambor</option>
                             <option value="Disco" {{ $reportefalla->tipo_sistema == 'Disco' ? 'selected' : '' }}>Disco</option>
-                            </select>                        
+                            </select>      
                         </div>
-                    </div>
                 </div>
 
                 <div class="hidden" id="tab-suspension">
@@ -220,13 +219,13 @@
         </div>
     </div>
 
-    <div id='recipients' class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <div id='recipients' class="static p-8 mt-6 mx-6 rounded shadow lg:mx-6 bg-white">
         <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Grabaciones extras</h2>   
         <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8"> 
                          
            <div class="flex flex-wrap -mx-3 mb-6">
                 @if($reportefalla->gragacion_2 != null)
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div class="w-full px-3 mb-6 md:mb-0">
                         {{-- Grabación #2 actual--}}                    
                         <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #2 actual" /><span class="inline-block text-red-500">*</span>
                         <audio controls>
@@ -234,7 +233,8 @@
                         </audio>
                     </div>
                 @endif
-               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+               
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     {{-- Cargar nueva grabación #2 --}}                    
                     <x-jet-label class="inline-block mb-4" for="gragacion_2" value="Cargar nueva grabación #2" /><span class="inline-block text-red-500"></span>
                     <x-jet-input id="gragacion_2" name="gragacion_2" class="block w-full" type="file" accept=".mp3"  />
@@ -249,7 +249,7 @@
                     <x-jet-input-error for="ubicacion_grabacion2" class="mt-2" />                    
                 </div>
                 @if($reportefalla->gragacion_3 != null)
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div class="w-full  px-3 mb-6 md:mb-0">
                         {{-- Grabación #3 actual--}}                    
                         <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #3 actual" /><span class="inline-block text-red-500">*</span>
                         <audio controls>
@@ -272,7 +272,7 @@
                     <x-jet-input-error for="ubicacion_grabacion3" class="mt-2" />                    
                 </div>
                 @if($reportefalla->gragacion_4 != null)
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div class="w-full px-3 mb-6 md:mb-0">
                         {{-- Grabación #4 actual--}}                    
                         <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #4 actual" /><span class="inline-block text-red-500">*</span>
                         <audio controls>
@@ -295,7 +295,7 @@
                     <x-jet-input-error for="ubicacion_grabacion4" class="mt-2" />                    
                 </div>
                 @if($reportefalla->gragacion_5 != null)
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div class="w-full px-3 mb-6 md:mb-0">
                         {{-- Grabación #5 actual--}}                    
                         <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Grabación #5 actual" /><span class="inline-block text-red-500">*</span>
                         <audio controls>
@@ -317,14 +317,14 @@
                     <x-jet-input id="ubicacion_grabacion5" value="{{ isset($reportefalla->ubicacion_grabacion5) ? $reportefalla->ubicacion_grabacion5 : old('ubicacion_grabacion5') }}" name="ubicacion_grabacion5" class="block w-full" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
                     <x-jet-input-error for="ubicacion_grabacion5" class="mt-2" />                    
                 </div>
-                <div class="grid grid-cols-3 w-full md:w-1/2 px-3">
-                    <div></div>
-                    <button class="mx-6 mt-6 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-center">
-                        Guardar cambios de registro de falla y ruido
-                    </button>
-                    <div></div>
-                </div>
             </div>
+        </div>
+        <div class="grid px-3 justify-center">
+            <div></div>
+            <button class="mx-6 mt-6 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                Guardar cambios de registro de falla y ruido
+            </button>
+            <div></div>
         </div>
     </div>      
     
