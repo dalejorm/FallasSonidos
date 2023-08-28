@@ -4,14 +4,13 @@
     </div>
 
     <div class="mt-8 text-2xl">
-        Welcome to your Jetstream application!
+    Bienvenido al Sistema de Gestión de Conocimiento de Fallas y Ruidos Vehículares!
     </div>
 
     <div class="mt-6 text-gray-500">
-        Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-        to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-        you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-        ecosystem to be a breath of fresh air. We hope you love it.
+    Este es un sistema desarrollado por el Sena, con el fin de caracterizar y 
+    sistematizar la información correspondiente con los ruidos y las fallas vehiculares;
+    hace parte de un proyecto el cual su finalidad es investigativa y formativa.
     </div>
 </div>
 
@@ -19,17 +18,16 @@
     <div class="p-6">
         <div class="flex items-center">
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://laravel.com/docs">Documentation</a></div>
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="{{ route('gestion-fallas.index') }}">Gestión de fallas y ruidos</a></div>
         </div>
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500">
-                Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
-            </div>
+            En el modulo de gestión de fallas y ruidos, podrás como usuario registrar en el sistema de conocimiento, las fallas y ruidos que deseas registrar para compartir dicha información con la comunidad.            </div>
 
-            <a href="https://laravel.com/docs">
+            <a href="{{ route('gestion-fallas.index') }}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
-                        <div>Explore the documentation</div>
+                        <div>Explore el modulo</div>
 
                         <div class="ml-1 text-indigo-500">
                             <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -41,18 +39,17 @@
 
     <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
         <div class="flex items-center">
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://laracasts.com">Laracasts</a></div>
+            <svg class="h-8 w-8 text-gray-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M15 8a5 5 0 0 1 0 8" />  <path d="M17.7 5a9 9 0 0 1 0 14" />  <path d="M6 15 h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5" /></svg>
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="#sectionBuscador">Buscador</a></div>
         </div>
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500">
-                Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-            </div>
+            En el buscador de sistema de gestión de conocimiento, podrás realizar búsquedas filtrando la información de acuerdo a tu interés, allí podrás encontrar los resultados acorde a toda la información que se almacena y se ha registrado por la comunidad.            </div>
 
-            <a href="https://laracasts.com">
+            <a href="#sectionBuscador">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
-                        <div>Start watching Laracasts</div>
+                        <div>Inicia tu busqueda</div>
 
                         <div class="ml-1 text-indigo-500">
                             <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
