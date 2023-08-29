@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\CustomResetPassword;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        CustomResetPassword::createUrlUsing(function ($user, string $token){
+            return 'http://127.0.0.1:8000/reset-password/'.$token;
+        });
     }
 }

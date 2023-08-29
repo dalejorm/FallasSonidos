@@ -92,8 +92,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'sgcfr@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'SGCFRV - Sistema de Gestión del Conocimiento de Fallas y Ruidos Vehiculares'),
     ],
 
     /*
