@@ -1,6 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="grid grid-cols-2 content-around">
+    <x-slot name="header" >
+        <div class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow ">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Crear registro de Falla y Ruido') }}
         </h2>        
@@ -8,9 +8,9 @@
         
     </x-slot>
 
-    <form action="{{ route('gestion-fallas.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('gestion-fallas.store') }}" method="POST" enctype="multipart/form-data" class="max-w-7xl  pb-6 lg:w-11/12  sm:w-full mx-auto ">
     @csrf
-    <div id='recipients' class="static w-max p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <div id='recipients' class="static p-8 mt-6 mx-6 rounded shadow  bg-white">
         <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Datos del vehículo</h2>
         <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">
             
@@ -31,9 +31,10 @@
                     <x-jet-input id="linea" name="linea" class="block w-full" type="text" value="{{old('linea')}}" placeholder="Línea" data-error="" minlength="5" maxlength="190" required />
                     <x-jet-input-error for="linea" class="mt-2" />                    
                 </div>
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    {{-- Modelo --}}                    
-                    <x-jet-label class="inline-block mb-4" for="modelo" value="modelo" /><span class="inline-block text-red-500">*</span>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 ">
+                    {{-- Modelo--}}                  
+                    <x-jet-label class="inline-block mb-4 " for="modelo" value="modelo" />
+                    <span class="inline-block text-red-500 ">*</span>
                     <div class="relative">
                         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="modelo" name="modelo" required>
                         @foreach($anos as $ano)
@@ -42,7 +43,6 @@
                         </select>                        
                     </div>
                 </div>
-
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     {{-- Kilometraje --}}                    
                     <x-jet-label class="inline-block mb-4" for="Kilometraje" value="Kilometraje" /><span class="inline-block text-red-500">*</span>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <div id='recipients' class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <div id='recipients' class="static p-8 mt-6 mx-6 rounded shadow  bg-white">
         <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Información de la falla</h2>                
         <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">                            
             <div class="flex flex-wrap -mx-3 mb-6">
@@ -151,16 +151,15 @@
                     </div>
                 </div>
 
-                <div class="hidden" id="tab-frenos">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" id="tab-frenos">
+                    
                         {{-- Sistema de frenos--}}                    
                         <x-jet-label class="inline-block mb-4" for="tipo_sistema1" value="Sistema de frenos" /><span class="inline-block text-red-500">*</span>           
                         <div class="relative">
                             <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tipo_sistema1" name="tipo_sistema1" required>
                             <option value="Tambor" {{ old('tipo_sistema1') =='Tambor' ? 'selected' : '' }}>Tambor</option>
                             <option value="Disco" {{ old('tipo_sistema1') =='Disco' ? 'selected' : '' }}>Disco</option>
-                            </select>                        
-                        </div>
+                            </select>          
                     </div>
                 </div>
 
@@ -221,7 +220,7 @@
         </div>
     </div>
 
-    <div id='recipients' class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow bg-white">
+    <div id='recipients' class="static p-8 mt-6 mx-6 rounded shadow  bg-white">
         <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Grabaciones extras</h2>   
         <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8"> 
                          
@@ -286,14 +285,14 @@
                     <x-jet-input id="ubicacion_grabacion5" name="ubicacion_grabacion5" class="block w-full" value="{{old('ubicacion_grabacion5')}}" type="text" placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190"  />
                     <x-jet-input-error for="ubicacion_grabacion5" class="mt-2" />                    
                 </div>
-                <div class="grid grid-cols-3 w-full md:w-1/2 px-3">
-                    <div></div>
-                    <button class="mx-6 mt-6 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-center">
-                        Crear nuevo registro de falla y ruido
-                    </button>
-                    <div></div>
-                </div>
             </div>
+        </div>
+        <div class="grid px-3 justify-center">
+            <div></div>
+            <button class="mx-6 mt-6 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                Crear nuevo registro de falla y ruido
+            </button>
+            <div></div>
         </div>
     </div>
         

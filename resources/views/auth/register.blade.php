@@ -1,14 +1,18 @@
-<head>
+<!--<head>
 <link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
   rel="stylesheet" />
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
 <script src="https://cdn.tailwindcss.com/3.3.0"></script>
-</head>
+</head>-->
+
 <x-guest-layout>
-    <x-jet-authentication-card class="pt-12">
+    <x-backgroundSup />
+    <x-jet-authentication-card 
+    class="pt-10">
+
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
@@ -103,8 +107,8 @@
                 </div>               
             @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+            <div class="flex flex-col items-center justify-end mt-4">
+                <a class="no-underline text-base text-[#36A9E1] hover:text-[#2F80ED] mb-2 pb-2"  href="{{ route('login') }}">
                     {{ __('¿Ya estas registrado?') }}
                 </a>
 
@@ -117,6 +121,7 @@
 
 
     </x-jet-authentication-card>
+    <x-backgroundInf />
     <x-footer />
 </x-guest-layout>
 

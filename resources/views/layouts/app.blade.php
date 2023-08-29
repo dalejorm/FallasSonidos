@@ -8,6 +8,8 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.css" rel="stylesheet" />
 
+        <!-- Icon -->
+        <link rel="icon" href="{{ asset('img/brand/favicon.png') }}">
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <!-- Styles -->
@@ -26,7 +28,7 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-200">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
