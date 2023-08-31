@@ -46,7 +46,7 @@
 		.dataTables_wrapper .dataTables_paginate .paginate_button {
 			font-weight: 700;
 			/*font-bold*/
-			border-radius: .25rem;
+			border-radius: 0.25rem;
 			/*rounded*/
 			border: 1px solid transparent;
 			/*border border-transparent*/
@@ -62,7 +62,7 @@
 			/*font-bold*/
 			border-radius: .25rem;
 			/*rounded*/
-			background: #667eea !important;
+			background: #36A9E1 !important;
 			/*bg-indigo-500*/
 			border: 1px solid transparent;
 			/*border border-transparent*/
@@ -78,7 +78,7 @@
 			/*font-bold*/
 			border-radius: .25rem;
 			/*rounded*/
-			background: #667eea !important;
+			background: #36A9E1 !important;
 			/*bg-indigo-500*/
 			border: 1px solid transparent;
 			/*border border-transparent*/
@@ -95,18 +95,20 @@
 		/*Change colour of responsive icon*/
 		table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
 		table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
-			background-color: #667eea !important;
+			background-color: #36A9E1 !important;
 			/*bg-indigo-500*/
 		}
 	</style>
 <x-app-layout>
     <x-slot name="header">
+        <div class="grid grid-cols-2 content-around static p-8 mt-6 lg:mt-0 mx-6 rounded shadow">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Usuarios del sistema') }}
         </h2>
+        </div>
     </x-slot>    
 
-    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+    <div id='recipients' class="pt-6 max-w-7xl lg:w-11/12 sm:w-full mx-auto p-8 mt-6 rounded shadow bg-white">
         
         <table id="userTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
         <thead class="border-b font-medium dark:border-neutral-500">
@@ -151,7 +153,7 @@
                 </div> -->
                 @if($user->active == 1)
                 <div class="flex item-center justify-center">
-                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Desactivar">
+                    <div class="w-4 mr-2 transform hover:text-[#36A9E1] hover:scale-110" data-te-toggle="tooltip" title="Desactivar">
                     
                     <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
                     @csrf
@@ -171,7 +173,7 @@
 
                 @if($user->active == 0)
                 <div class="flex item-center justify-center">
-                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Activar">
+                    <div class="w-4 mr-2 transform hover:text-[#36A9E1] hover:scale-110" data-te-toggle="tooltip" title="Activar">
                     <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
                     @csrf
                     @method('PUT')

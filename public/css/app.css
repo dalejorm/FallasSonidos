@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
@@ -167,8 +167,6 @@ optgroup,
 select,
 textarea {
   font-family: inherit; /* 1 */
-  font-feature-settings: inherit; /* 1 */
-  font-variation-settings: inherit; /* 1 */
   font-size: 100%; /* 1 */
   font-weight: inherit; /* 1 */
   line-height: inherit; /* 1 */
@@ -303,13 +301,6 @@ ul,
 menu {
   list-style: none;
   margin: 0;
-  padding: 0;
-}
-
-/*
-Reset default styling for dialogs.
-*/
-dialog {
   padding: 0;
 }
 
@@ -2108,6 +2099,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-translate-y: -50px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.translate-x-0 {
+  --tw-translate-x: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .rotate-180 {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -2532,6 +2527,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
+.rounded-b {
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
 .\!border-0 {
   border-width: 0px !important;
 }
@@ -2562,6 +2561,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 .border-b-2 {
   border-bottom-width: 2px;
 }
+.border-b-4 {
+  border-bottom-width: 4px;
+}
 .border-l {
   border-left-width: 1px;
 }
@@ -2589,8 +2591,8 @@ input[type="range"]:active::-webkit-slider-thumb {
 .border-t-2 {
   border-top-width: 2px;
 }
-.border-b-4 {
-  border-bottom-width: 4px;
+.border-t-4 {
+  border-top-width: 4px;
 }
 .\!border-solid {
   border-style: solid !important;
@@ -2605,13 +2607,13 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-border-opacity: 1 !important;
   border-color: rgb(178 179 180 / var(--tw-border-opacity)) !important;
 }
+.border-\[\#36A9E1\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(54 169 225 / var(--tw-border-opacity));
+}
 .border-\[\#3b71ca\] {
   --tw-border-opacity: 1;
   border-color: rgb(59 113 202 / var(--tw-border-opacity));
-}
-.border-\[\#FF820D\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 130 13 / var(--tw-border-opacity));
 }
 .border-blue-400 {
   --tw-border-opacity: 1;
@@ -2620,6 +2622,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .border-blue-500 {
   --tw-border-opacity: 1;
   border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+.border-blue-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(29 78 216 / var(--tw-border-opacity));
 }
 .border-gray-100 {
   --tw-border-opacity: 1;
@@ -2676,13 +2682,13 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
-.border-blue-700 {
+.border-yellow-700 {
   --tw-border-opacity: 1;
-  border-color: rgb(29 78 216 / var(--tw-border-opacity));
+  border-color: rgb(161 98 7 / var(--tw-border-opacity));
 }
-.border-gray-700 {
+.border-teal-500 {
   --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity));
+  border-color: rgb(20 184 166 / var(--tw-border-opacity));
 }
 .border-t-transparent {
   border-top-color: transparent;
@@ -2752,6 +2758,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 .bg-black\/40 {
   background-color: rgb(0 0 0 / 0.4);
+}
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 .bg-blue-900 {
   --tw-bg-opacity: 1;
@@ -2868,16 +2878,19 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-bg-opacity: 1;
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
 }
-.bg-\[\#FF820D\] {
+.bg-blue-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 130 13 / var(--tw-bg-opacity));
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
-.bg-blue-500 {
+.bg-teal-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+  background-color: rgb(204 251 241 / var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
+}
+.bg-opacity-80 {
+  --tw-bg-opacity: 0.8;
 }
 .bg-cover {
   background-size: cover;
@@ -3387,10 +3400,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-text-opacity: 1;
   color: rgb(79 79 79 / var(--tw-text-opacity));
 }
-.text-\[\#FBB06A\] {
-  --tw-text-opacity: 1;
-  color: rgb(251 176 106 / var(--tw-text-opacity));
-}
 .text-\[\#b3afaf\] {
   --tw-text-opacity: 1;
   color: rgb(179 175 175 / var(--tw-text-opacity));
@@ -3542,6 +3551,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-teal-900 {
+  --tw-text-opacity: 1;
+  color: rgb(19 78 74 / var(--tw-text-opacity));
 }
 .underline {
   text-decoration-line: underline;
@@ -3730,6 +3743,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 .delay-\[0ms\] {
   transition-delay: 0ms;
 }
+.delay-500 {
+  transition-delay: 500ms;
+}
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -3759,6 +3775,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 .duration-\[400ms\] {
   transition-duration: 400ms;
+}
+.duration-1000 {
+  transition-duration: 1000ms;
 }
 .ease-\[cubic-bezier\(0\2c 0\2c 0\.15\2c 1\)\2c _cubic-bezier\(0\2c 0\2c 0\.15\2c 1\)\] {
   transition-timing-function: cubic-bezier(0,0,0.15,1), cubic-bezier(0,0,0.15,1);
@@ -3948,6 +3967,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .hover\:rounded-\[50\%\]:hover {
   border-radius: 50%;
 }
+.hover\:border-blue-500:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -3959,9 +3982,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
-.hover\:border-blue-500:hover {
+.hover\:border-yellow-500:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+  border-color: rgb(234 179 8 / var(--tw-border-opacity));
 }
 .hover\:\!bg-\[\#eee\]:hover {
   --tw-bg-opacity: 1 !important;
@@ -3977,12 +4000,16 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-bg-opacity: 1;
   background-color: rgb(47 128 237 / var(--tw-bg-opacity));
 }
-.hover\:bg-\[\#FF820D\]:hover {
+.hover\:bg-\[\#36A9E1\]:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 130 13 / var(--tw-bg-opacity));
+  background-color: rgb(54 169 225 / var(--tw-bg-opacity));
 }
 .hover\:bg-\[unset\]:hover {
   background-color: unset;
+}
+.hover\:bg-blue-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
 }
 .hover\:bg-blue-500:hover {
   --tw-bg-opacity: 1;
@@ -4036,9 +4063,9 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-bg-opacity: 1;
   background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
-.hover\:bg-blue-400:hover {
+.hover\:bg-yellow-400:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 .hover\:bg-opacity-10:hover {
   --tw-bg-opacity: 0.1;
@@ -4050,6 +4077,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-text-opacity: 1;
   color: rgb(47 128 237 / var(--tw-text-opacity));
 }
+.hover\:text-\[\#36A9E1\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(54 169 225 / var(--tw-text-opacity));
+}
 .hover\:text-\[\#3b71ca\]:hover {
   --tw-text-opacity: 1;
   color: rgb(59 113 202 / var(--tw-text-opacity));
@@ -4057,6 +4088,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .hover\:text-\[\#8b8b8b\]:hover {
   --tw-text-opacity: 1;
   color: rgb(139 139 139 / var(--tw-text-opacity));
+}
+.hover\:text-blue-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 .hover\:text-blue-900:hover {
   --tw-text-opacity: 1;
