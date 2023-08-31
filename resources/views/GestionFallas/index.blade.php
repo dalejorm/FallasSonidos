@@ -32,7 +32,7 @@
 			border-color: #edf2f7;
 			/*border-gray-200*/
 			background-color: #edf2f7;
-			/*bg-gray-200*/
+			/*bg-blue-500*/
 		}
 
 		/*Row Hover*/
@@ -62,8 +62,8 @@
 			/*font-bold*/
 			border-radius: .25rem;
 			/*rounded*/
-			background: #667eea !important;
-			/*bg-indigo-500*/
+			background:#36A9E1 !important;
+			/*bg-[#36A9E1]*/
 			border: 1px solid transparent;
 			/*border border-transparent*/
 		}
@@ -78,8 +78,8 @@
 			/*font-bold*/
 			border-radius: .25rem;
 			/*rounded*/
-			background: #667eea !important;
-			/*bg-indigo-500*/
+			background: #36A9E1 !important;
+			/*bg-[#36A9E1]*/
 			border: 1px solid transparent;
 			/*border border-transparent*/
 		}
@@ -95,24 +95,24 @@
 		/*Change colour of responsive icon*/
 		table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
 		table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
-			background-color: #667eea !important;
-			/*bg-indigo-500*/
+			background-color: #36A9E1 !important;
+			/*bg-[#36A9E1]*/
 		}
 	</style>
 <x-app-layout>
     <x-slot name="header">
-        <div class="grid grid-cols-2 content-around">
+        <div class="grid grid-cols-2 content-around static p-8 mt-6 lg:mt-0 mx-6 rounded shadow">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Fallas y Ruidos registrados') }}
         </h2>
-        <a href="{{ route('gestion-fallas.create') }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-center">
+        <a href="{{ route('gestion-fallas.create') }}" class="bg-transparent hover:bg-[#36A9E1] text-[#36A9E1] font-semibold hover:text-white py-2 px-4 border border-[#36A9E1] hover:border-transparent rounded text-center">
         Crear nuevo registro de falla y ruido
         </a>
         </div>
         
     </x-slot>    
 
-    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+    <div id='recipients' class="pt-6 max-w-7xl lg:w-11/12 sm:w-full mx-auto p-8 mt-6 rounded shadow bg-white">
         
         <table id="fallasTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
         <thead class="border-b font-medium dark:border-neutral-500">
@@ -164,9 +164,9 @@
                     <td class="whitespace-nowrap px-6 py-4">
                          
                         <div class="flex item-center justify-center">
-                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">                
+                            <div class=" transform hover:text-[#36A9E1] hover:scale-110 ">                
                                 <a href="{{ route('gestion-fallas.show', [$falla]) }}" data-te-toggle="tooltip" title="Detallar">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded  px-1">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
@@ -175,10 +175,10 @@
                         </div>
                         @if ($user->role == 1)
                             @if($user->id == $falla->id_user)
-                                <div class="flex item-center justify-center">
-                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">                
+                                <div class="flex item-center justify-center mt-2">
+                                    <div class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">                
                                         <a href="{{ route('gestion-fallas.edit', [$falla]) }}" data-te-toggle="tooltip" title="Editar">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 bg-yellow-500 hover:bg-yellow-400 text-white font-bold border-b-4 border-yellow-700 hover:border-yellow-500 rounded  px-1">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                         </svg>
                                         </a>
@@ -221,7 +221,7 @@
                                 </div>
 
                                 <div class="flex item-center justify-center">
-                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Rechazar">
+                                    <div class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110" data-te-toggle="tooltip" title="Rechazar">
                                     
                                     <form action="{{ route('aprobacion-fallas.update', [$falla]) }}" method="POST">
                                     @csrf
