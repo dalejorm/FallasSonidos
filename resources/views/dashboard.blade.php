@@ -20,7 +20,7 @@
                             <form method="GET" action="{{ route('busqueda') }}">                               
                                 <div class="max-w-full">
                                     <div class="ml-16 w-full">
-                                        <input class="w-full appearance-none block bg-gray-100 text-gray-700 border border-blue-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" minlength="3" maxlength="50" id="txt-search" name="txt-search" type="text" pattern="[a-zA-Z0-9 ]{3,50}" title="Ingrese texto a buscar" placeholder="Buscar registro de falla y ruido" >
+                                        <input class="w-full appearance-none block bg-gray-100 text-gray-700 border border-blue-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" minlength="3" maxlength="50" id="txt-search" name="txt-search" type="text" pattern="[^'\x22]+{3,50}" title="Ingrese texto a buscar" placeholder="Buscar registro de falla y ruido" >
                                     </div>
                                     <div class="flex">
                                     {{-- Modelo --}}                    
