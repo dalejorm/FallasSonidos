@@ -153,8 +153,36 @@
                 </div> -->
                 @if($user->active == 1)
                 <div class="flex item-center justify-center">
-                    <div class="w-4 mr-2 transform hover:text-[#36A9E1] hover:scale-110" data-te-toggle="tooltip">
-                    <!-- Desactivar -->
+                    <div class="w-4 mr-2 transform hover:text-[#36A9E1] hover:scale-110
+                    relative
+                    before:content-[attr(data-tip)]
+                    before:absolute
+                    before:px-1 before:-bottom-0
+                    before:left-1/2 before:top-2
+                    before:w-max before:max-w-xs
+                    before:-translate-x-1
+                    before:-translate-y-10
+                    before:bg-gray-700 before:text-white  
+                    before:rounded-md before:opacity-0
+                    before:transition-all
+
+                    after:absolute
+                    after:left-1/2 after:-bottom-3
+                    after:h-0 after:w-0
+                    after:-translate-x-1 
+                    after:-translate-y-10
+                    after:border-8
+                    after:border-t-gray-700
+                    after:border-r-transparent
+                    after:border-b-transparent
+                    after:border-l-transparent
+                    after:opacity-0
+                    after:transition-all
+
+                    hover:before:opacity-100 hover:after:opacity-100"
+
+                    data-tip= " Desactivar">
+                    
                     <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -173,8 +201,34 @@
 
                 @if($user->active == 0)
                 <div class="flex item-center justify-center">
-                    <div class="w-4 mr-2 transform hover:text-[#36A9E1] hover:scale-110" data-te-toggle="tooltip">
-                    <!-- Activar -->
+                    <div class="w-4 mr-2 transform hover:text-[#36A9E1] hover:scale-110
+                    relative
+                    before:content-[attr(data-tip)]
+                    before:absolute
+                    before:px-1 before:-bottom-0
+                    before:left-1/2 before:top-2
+                    before:w-max before:max-w-xs
+                    before:-translate-x-1
+                    before:-translate-y-10
+                    before:bg-gray-700 before:text-white  
+                    before:rounded-md before:opacity-0
+                    before:transition-all
+
+                    after:absolute
+                    after:left-1/2 after:-bottom-3
+                    after:h-0 after:w-0
+                    after:-translate-x-1 
+                    after:-translate-y-10
+                    after:border-8
+                    after:border-t-gray-700
+                    after:border-r-transparent
+                    after:border-b-transparent
+                    after:border-l-transparent
+                    after:opacity-0
+                    after:transition-all
+                    hover:before:opacity-100 hover:after:opacity-100"
+                    data-tip= " Activar">
+
                     <form action="{{ route('gestion-usuarios.update', [$user]) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -203,11 +257,10 @@
             </tr>
         @endforeach
         </tbody>
-        </table>
-                                
+        </table>                       
                 
     </div>
-
+    
     <!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
