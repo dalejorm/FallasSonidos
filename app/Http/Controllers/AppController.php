@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 class AppController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Show node dashboard.
      *

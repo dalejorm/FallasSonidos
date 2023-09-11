@@ -19,5 +19,9 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+        {{-- Alert component --}}
+    @if (session('estado') || (!is_null($errors) && $errors->any() > 0))
+        <x-data-alert />
+    @endif
     </body>
 </html>

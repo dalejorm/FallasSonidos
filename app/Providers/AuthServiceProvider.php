@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\User'          => 'App\Policies\DashboardPolicy'
     ];
 
     /**
@@ -25,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole(1) ? true : null;
+        });
 
         CustomResetPassword::createUrlUsing(function ($user, string $token){
             return 'http://sgcfrv.hadessalazar.com/reset-password/'.$token;

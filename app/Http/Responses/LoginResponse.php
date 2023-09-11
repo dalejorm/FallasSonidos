@@ -16,7 +16,7 @@ class LoginResponse implements LoginResponseContract
         // the user can be located with Auth facade
 
         $authUser = Auth::user();
-        
+       
 
         return $request->wantsJson()
                     ? response()->json(['two_factor' => false])

@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Storage;
 
 class AprobacionFallaController extends Controller
 {      
+    public function __construct(){
+        $this->middleware('auth');
+    }
 
 
     public function update(AprobacionFallaRequest $request, ReporteFalla $gestionfalla){
