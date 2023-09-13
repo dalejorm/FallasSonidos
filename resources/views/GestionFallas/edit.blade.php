@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow ">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="bg-white static p-8 mt-6 lg:mt-0 mx-6 rounded shadow  border-4 border-y-[#CDCDCD]">
+        <h2 class="bg-white font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Editar registro de Falla y Ruido') }}
         </h2>        
         </div>

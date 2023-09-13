@@ -54,6 +54,7 @@ module.exports = {
                 'blue-marine': '#2F80ED',
                 'orange-clear': '#FBB06A',
                 'orange': '#FF820D',
+                'Gray-Palette': '#CDCDCD',
               },
         },
     }    

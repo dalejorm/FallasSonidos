@@ -1,15 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow ">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Editar registro de Falla y Ruido') }}
+        <div class="bg-white static p-8 mt-6 lg:mt-0 mx-6 rounded shadow  border-4 border-y-[#CDCDCD]">
+        <h2 class="bg-white font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Visualizar registro de Falla y Ruido') }}
         </h2>        
         </div>
         
     </x-slot>
 
-    
-<div id='recipients' class="max-w-7xl  pb-6 mx-auto static p-8 mt-6 rounded shadow bg-white ">
+<div id='recipients' class="max-w-7xl w-11/12 pb-6 mx-auto static p-8 mt-6 rounded shadow bg-white ">
     <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Datos del vehículo</h2>
     <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">
         
@@ -80,7 +79,7 @@
     </div>
 </div>
 
-<div id='recipients' class="max-w-7xl  pb-6 mx-auto static p-8 mt-6 rounded shadow bg-white">
+<div id='recipients' class="max-w-7xl w-11/12 pb-6 mx-auto static p-8 mt-6 rounded shadow bg-white ">
     <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Información de la falla</h2>                
     <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">                            
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -168,7 +167,7 @@
     </div>
 </div>
 
-<div id='recipients' class="max-w-7xl  pb-6 mx-auto static p-8 mt-6 rounded shadow bg-white">
+<div id='recipients' class="max-w-7xl w-11/12 pb-6 mx-auto static p-8 mt-6 rounded shadow bg-white ">
     <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Grabaciones extras</h2>   
     <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8"> 
                         
@@ -290,7 +289,7 @@
         </div>
     </div>
 </div> 
-
+<br>
     {{-- Alert component --}}
     @if (session('estado'))
     <x-data-alert />

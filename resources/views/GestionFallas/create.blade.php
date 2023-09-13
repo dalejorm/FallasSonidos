@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header" >
-        <div class="static p-8 mt-6 lg:mt-0 mx-6 rounded shadow ">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="bg-white static p-8 mt-6 lg:mt-0 mx-6 rounded shadow  border-4 border-y-[#CDCDCD]">
+        <h2 class="bg-white font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Crear registro de Falla y Ruido') }}
         </h2>        
         </div>
@@ -163,8 +163,8 @@
                     </div>
                 </div>
 
-                <div class="hidden" id="tab-suspension">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="hidden  md:w-1/2 mb-6 px-3 md:mb-0" id="tab-suspension">
+                    <div class="w-full ">
                         {{-- Sistema de suspensión--}}                    
                         <x-jet-label class="inline-block mb-4" for="tipo_sistema2" value="Sistema de suspensión" /><span class="inline-block text-red-500">*</span>           
                          <div class="relative">
@@ -177,8 +177,8 @@
                     </div>
                 </div>
 
-                <div class="hidden" id="tab-carroceria">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="hidden md:w-1/2 mb-6 px-3 md:mb-0" id="tab-carroceria">
+                    <div class="w-full">
                         {{-- Tipo de carroceria --}}                    
                         <x-jet-label class="inline-block mb-4" for="tipo_sistema3" value="Tipo de carroceria" /><span class="inline-block text-red-500">*</span>
                         <x-jet-input id="tipo_sistema3" name="tipo_sistema3" class="block w-full" type="text"  value="{{old('tipo_sistema3')}}" placeholder="Diagnostico de la Falla" data-error="" minlength="5" maxlength="190" required />
@@ -186,8 +186,8 @@
                     </div> 
                 </div>
 
-                <div class="hidden" id="tab-motor">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="hidden hidden md:w-1/2 mb-6 px-3 md:mb-0" id="tab-motor">
+                    <div class="w-full">
                         {{-- Tipo de Motor --}}                    
                         <x-jet-label class="inline-block mb-4" for="tipo_sistema4" value="Tipo de motor" /><span class="inline-block text-red-500">*</span>
                         <x-jet-input id="tipo_sistema4" name="tipo_sistema4" class="block w-full" type="text"  value="{{old('tipo_sistema4')}}" placeholder="Diagnostico de la Falla" data-error="" minlength="5" maxlength="190" required />
@@ -205,7 +205,7 @@
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     {{-- Cargar grabación principal --}}                    
                     <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Cargar grabación principal" /><span class="inline-block text-red-500">*</span>
-                    <input id="gragacion_principal" name="gragacion_principal" value="{{old('gragacion_principal')}}" class="block w-full" type="file" accept=".mp3" />
+                    <input id="gragacion_principal" name="gragacion_principal" value="{{old('gragacion_principal')}}" class="block w-full appearance-none bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 rounded" type="file" accept=".mp3" />
                     <x-jet-input-error for="gragacion_principal" class="mt-2" />
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">MP3 (MAX. 2MB).</p>                    
                 </div>
