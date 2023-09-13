@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReporteFalla;
-use App\Models\Vehicles;
-use App\Models\Anos;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReporteFallaRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
@@ -151,6 +148,7 @@ class GestionFallaController extends Controller
     }
 
     public function update(ReporteFallaRequest $request, ReporteFalla $gestionfalla){
+        $this->authorize('author',$gestionfalla);
         $user               = auth()->user(); 
         $gestionfalla->tipo_vehiculo = $request->get('tipo_vehiculo');
         $gestionfalla->linea = $request->get('linea');
@@ -244,6 +242,8 @@ class GestionFallaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(ReporteFalla $gestionfalla){
+        $this->authorize('author',$gestionfalla);
+
         $user = auth()->user(); 
         //error_log($user->id);
         //$reportefalla = ReporteFalla::where('id', '=',$falla)->first();
@@ -274,6 +274,7 @@ class GestionFallaController extends Controller
      */
     public function destroy(ReporteFalla $gestionfalla)
     {
+        $this->authorize('author',$gestionfalla);
         $user               = auth()->user();   
         //$this->authorize('destroy_producto', [Producto::class, $producto]);
         

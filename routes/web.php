@@ -29,15 +29,19 @@ Route::get('terms', function () {
 
 //Route::get('/busqueda', 'AppController@busqueda')->name('busqueda');
 
+Route::middleware(['auth','isAdmin'])->group(function () {
+// rutas para acceder a gestion de usuarios
+Route::resource('gestion-usuarios', GestionUsuarioController::class)->parameters(['gestion-usuarios' => 'gestion-usuario']);
+
+Route::resource('aprobacion-fallas', AprobacionFallaController::class)->parameters(['aprobacion-fallas' => 'gestionfalla']);
+});
+
 
 Route::middleware(['auth'])->group(function () {
     
-    // rutas para acceder a gestion de usuarios
-    Route::resource('gestion-usuarios', GestionUsuarioController::class)->parameters(['gestion-usuarios' => 'gestion-usuario']);
+    
     // rutas para acceder a gestion de fallas
-    Route::resource('gestion-fallas', GestionFallaController::class)->parameters(['gestion-fallas' => 'gestionfalla']); 
-
-    Route::resource('aprobacion-fallas', AprobacionFallaController::class)->parameters(['aprobacion-fallas' => 'gestionfalla']); 
+    Route::resource('gestion-fallas', GestionFallaController::class)->parameters(['gestion-fallas' => 'gestionfalla']);      
 
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
 

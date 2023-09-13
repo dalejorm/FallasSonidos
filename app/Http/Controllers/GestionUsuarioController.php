@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
-use App\Http\Controllers\NotificationController;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GestionUsuarioController extends Controller
 {
@@ -20,12 +19,10 @@ class GestionUsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //$this->authorize('index_ideas_empresa', IdeaEmpresa::class);
-
-        $user               = auth()->user();       
-        $users       = User::orderBy('name', 'ASC')->paginate(10);        
-
+    {     
+        $user               = auth()->user();  
+        error_log(Auth::user()->role);           
+        $users       = User::orderBy('name', 'ASC')->paginate(10);      
         return view('GestionUsuarios.index', compact('users'));
     }
 

@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         $this->notify(new CustomResetPassword($token));
     }
+
+    public function hasRole($role)
+{
+    return User::where('role', $role)->get();
+}
 }

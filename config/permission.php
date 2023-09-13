@@ -118,6 +118,7 @@ return [
      * message. This could be considered an information leak in some contexts, so
      * the default setting is false here for optimum safety.
      */
+    'use_passport_client_credentials' => false,
 
     'display_permission_in_exception' => false,
 
