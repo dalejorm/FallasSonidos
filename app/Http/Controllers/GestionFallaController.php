@@ -92,6 +92,9 @@ class GestionFallaController extends Controller
         }
         if($reportefalla->sistema_falla == "Motor"){
             $reportefalla->tipo_sistema = $request->get('tipo_sistema4');
+        }
+        if($reportefalla->sistema_falla == "Transmisión"){
+            $reportefalla->tipo_sistema = $request->get('tipo_sistema5');
         }         
         $reportefalla->elemento_falla = $request->get('elemento_falla');
         $reportefalla->descripcion_reparacion = $request->get('descripcion_reparacion');
@@ -174,7 +177,10 @@ class GestionFallaController extends Controller
         }
         if($gestionfalla->sistema_falla == "Motor"){
             $gestionfalla->tipo_sistema = $request->get('tipo_sistema4');
-        }         
+        }
+        if($gestionfalla->sistema_falla == "Transmisión"){
+            $gestionfalla->tipo_sistema = $request->get('tipo_sistema5');
+        }                 
         $gestionfalla->elemento_falla = $request->get('elemento_falla');
         $gestionfalla->descripcion_reparacion = $request->get('descripcion_reparacion');
         $gestionfalla->ubicacion_grabacionprincipal = $request->get('ubicacion_grabacionprincipal');

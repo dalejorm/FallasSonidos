@@ -147,6 +147,7 @@
                         <option value="Suspensión" {{ old('sistema_falla') =='Suspensión' ? 'selected' : '' }}>Suspensión</option>
                         <option value="Carrocería" {{ old('sistema_falla') =='Carrocería' ? 'selected' : '' }}>Carrocería</option>
                         <option value="Motor" {{ old('sistema_falla') =='Motor' ? 'selected' : '' }}>Motor</option>
+                        <option value="Transmisión" {{ old('sistema_falla') =='Transmisión' ? 'selected' : '' }}>Transmisión</option>
                         </select>                        
                     </div>
                 </div>
@@ -181,7 +182,7 @@
                     <div class="w-full">
                         {{-- Tipo de carroceria --}}                    
                         <x-jet-label class="inline-block mb-4" for="tipo_sistema3" value="Tipo de carroceria" /><span class="inline-block text-red-500">*</span>
-                        <x-jet-input id="tipo_sistema3" name="tipo_sistema3" class="block w-full" type="text"  value="{{old('tipo_sistema3')}}" placeholder="Diagnostico de la Falla" data-error="" minlength="5" maxlength="190" required />
+                        <x-jet-input id="tipo_sistema3" name="tipo_sistema3" class="block w-full" type="text"  value="{{old('tipo_sistema3')}}" placeholder="tipo de carroceria" data-error="" minlength="5" maxlength="190" required />
                         <x-jet-input-error for="tipo_sistema3" class="mt-2" />                    
                     </div> 
                 </div>
@@ -190,9 +191,22 @@
                     <div class="w-full">
                         {{-- Tipo de Motor --}}                    
                         <x-jet-label class="inline-block mb-4" for="tipo_sistema4" value="Tipo de motor" /><span class="inline-block text-red-500">*</span>
-                        <x-jet-input id="tipo_sistema4" name="tipo_sistema4" class="block w-full" type="text"  value="{{old('tipo_sistema4')}}" placeholder="Diagnostico de la Falla" data-error="" minlength="5" maxlength="190" required />
+                        <x-jet-input id="tipo_sistema4" name="tipo_sistema4" class="block w-full" type="text"  value="{{old('tipo_sistema4')}}" placeholder="Tipo de motor" data-error="" minlength="5" maxlength="190" required />
                         <x-jet-input-error for="tipo_sistema4" class="mt-2" />                    
                     </div> 
+                </div>
+
+                <div class="hidden  md:w-1/2 mb-6 px-3 md:mb-0" id="tab-transmision">
+                    <div class="w-full ">
+                        {{-- Sistema de suspensión--}}                    
+                        <x-jet-label class="inline-block mb-4" for="tipo_sistema5" value="Sistema de transmisión" /><span class="inline-block text-red-500">*</span>           
+                         <div class="relative">
+                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tipo_sistema5" name="tipo_sistema5" required>
+                            <option value="Manual" {{ old('tipo_sistema5') =='Manual' ? 'selected' : '' }}>Manual</option>
+                            <option value="Automatica" {{ old('tipo_sistem5') =='Automatica Independiente' ? 'selected' : '' }}>Automatica</option>
+                            </select>                        
+                        </div>
+                    </div>
                 </div>
 
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -314,10 +328,12 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tipo_sistema1").required = true; 
             document.getElementById("tab-suspension").classList.add("hidden");
             document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-transmision").classList.add("hidden");
             document.getElementById("tab-motor").classList.add("hidden");
             document.getElementById("tipo_sistema2").required = false; 
             document.getElementById("tipo_sistema3").required = false;    
-            document.getElementById("tipo_sistema4").required = false;              
+            document.getElementById("tipo_sistema4").required = false;
+            document.getElementById("tipo_sistema5").required = false;              
         }
         
         if(valueSelector == "Suspensión"){
@@ -326,9 +342,11 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tab-frenos").classList.add("hidden");
             document.getElementById("tab-carroceria").classList.add("hidden");
             document.getElementById("tab-motor").classList.add("hidden");
+            document.getElementById("tab-transmision").classList.add("hidden");
             document.getElementById("tipo_sistema1").required = false; 
             document.getElementById("tipo_sistema3").required = false;
-            document.getElementById("tipo_sistema4").required = false; 
+            document.getElementById("tipo_sistema4").required = false;
+            document.getElementById("tipo_sistema5").required = false; 
         }
 
         if(valueSelector == "Carrocería"){
@@ -337,9 +355,11 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tab-frenos").classList.add("hidden");
             document.getElementById("tab-suspension").classList.add("hidden");
             document.getElementById("tab-motor").classList.add("hidden");
+            document.getElementById("tab-transmision").classList.add("hidden");
             document.getElementById("tipo_sistema2").required = false; 
             document.getElementById("tipo_sistema1").required = false;
             document.getElementById("tipo_sistema4").required = false;
+            document.getElementById("tipo_sistema5").required = false;
         }
         if(valueSelector == "Motor"){
             document.getElementById("tab-Motor").classList.remove("hidden"); 
@@ -347,9 +367,23 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tab-frenos").classList.add("hidden");
             document.getElementById("tab-suspension").classList.add("hidden");
             document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-transmision").classList.add("hidden");
             document.getElementById("tipo_sistema2").required = false; 
             document.getElementById("tipo_sistema1").required = false;
             document.getElementById("tipo_sistema3").required = false;
+            document.getElementById("tipo_sistema5").required = false;
+        }
+        if(valueSelector == "Transmisión"){
+            document.getElementById("tab-transmision").classList.remove("hidden"); 
+            document.getElementById("tipo_sistema5").required = true; 
+            document.getElementById("tab-frenos").classList.add("hidden");
+            document.getElementById("tab-suspension").classList.add("hidden");
+            document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-Motor").classList.add("hidden");
+            document.getElementById("tipo_sistema2").required = false; 
+            document.getElementById("tipo_sistema1").required = false;
+            document.getElementById("tipo_sistema3").required = false;
+            document.getElementById("tipo_sistema4").required = false;
         }
         bandera=100; 
     }
@@ -367,9 +401,11 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tab-suspension").classList.add("hidden");
             document.getElementById("tab-carroceria").classList.add("hidden");
             document.getElementById("tab-motor").classList.add("hidden");
+            document.getElementById("tab-transmision").classList.add("hidden");
             document.getElementById("tipo_sistema2").required = false; 
             document.getElementById("tipo_sistema3").required = false;    
-            document.getElementById("tipo_sistema4").required = false;              
+            document.getElementById("tipo_sistema4").required = false; 
+            document.getElementById("tipo_sistema5").required = false;             
         }
         
         if(valueSelector == "Suspensión"){
@@ -378,9 +414,11 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tab-frenos").classList.add("hidden");
             document.getElementById("tab-carroceria").classList.add("hidden");
             document.getElementById("tab-motor").classList.add("hidden");
+            document.getElementById("tab-transmision").classList.add("hidden");
             document.getElementById("tipo_sistema1").required = false; 
             document.getElementById("tipo_sistema3").required = false;
             document.getElementById("tipo_sistema4").required = false; 
+            document.getElementById("tipo_sistema5").required = false;
         }
 
         if(valueSelector == "Carrocería"){
@@ -389,9 +427,11 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tab-frenos").classList.add("hidden");
             document.getElementById("tab-suspension").classList.add("hidden");
             document.getElementById("tab-motor").classList.add("hidden");
+            document.getElementById("tab-transmision").classList.add("hidden");
             document.getElementById("tipo_sistema2").required = false; 
             document.getElementById("tipo_sistema1").required = false;
             document.getElementById("tipo_sistema4").required = false;
+            document.getElementById("tipo_sistema5").required = false;
         }
         if(valueSelector == "Motor"){
             document.getElementById("tab-motor").classList.remove("hidden"); 
@@ -399,9 +439,23 @@ document.addEventListener("scroll", (event) => {
             document.getElementById("tab-frenos").classList.add("hidden");
             document.getElementById("tab-suspension").classList.add("hidden");
             document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-transmision").classList.add("hidden");
             document.getElementById("tipo_sistema2").required = false; 
             document.getElementById("tipo_sistema1").required = false;
             document.getElementById("tipo_sistema3").required = false;
+            document.getElementById("tipo_sistema5").required = false;
+        }
+        if(valueSelector == "Transmisión"){
+            document.getElementById("tab-transmision").classList.remove("hidden"); 
+            document.getElementById("tipo_sistema5").required = true; 
+            document.getElementById("tab-frenos").classList.add("hidden");
+            document.getElementById("tab-suspension").classList.add("hidden");
+            document.getElementById("tab-carroceria").classList.add("hidden");
+            document.getElementById("tab-Motor").classList.add("hidden");
+            document.getElementById("tipo_sistema2").required = false; 
+            document.getElementById("tipo_sistema1").required = false;
+            document.getElementById("tipo_sistema3").required = false;
+            document.getElementById("tipo_sistema4").required = false;
         }
     });            
 </script>
