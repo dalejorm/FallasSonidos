@@ -95,6 +95,12 @@ class GestionFallaController extends Controller
         }
         if($reportefalla->sistema_falla == "Transmisión"){
             $reportefalla->tipo_sistema = $request->get('tipo_sistema5');
+        } 
+        if($reportefalla->sistema_falla == "Dirección"){
+            $reportefalla->tipo_sistema = $request->get('tipo_sistema6');
+        } 
+        if($reportefalla->sistema_falla == "Otro"){
+            $reportefalla->tipo_sistema = $request->get('tipo_sistema7');
         }         
         $reportefalla->elemento_falla = $request->get('elemento_falla');
         $reportefalla->descripcion_reparacion = $request->get('descripcion_reparacion');
@@ -180,7 +186,13 @@ class GestionFallaController extends Controller
         }
         if($gestionfalla->sistema_falla == "Transmisión"){
             $gestionfalla->tipo_sistema = $request->get('tipo_sistema5');
-        }                 
+        }     
+        if($gestionfalla->sistema_falla == "Dirección"){
+            $gestionfalla->tipo_sistema = $request->get('tipo_sistema6');
+        }  
+        if($gestionfalla->sistema_falla == "Otro"){
+            $gestionfalla->tipo_sistema = $request->get('tipo_sistema7');
+        }             
         $gestionfalla->elemento_falla = $request->get('elemento_falla');
         $gestionfalla->descripcion_reparacion = $request->get('descripcion_reparacion');
         $gestionfalla->ubicacion_grabacionprincipal = $request->get('ubicacion_grabacionprincipal');
