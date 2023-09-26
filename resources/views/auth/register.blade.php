@@ -37,17 +37,17 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label class="mb-4" for="document_number" value="{{ __('Numero de documento') }}" />
+                <x-jet-label class="mb-4" for="document_number" value="{{ __('Número de documento') }}" />
                 <x-jet-input id="document_number" class="block mt-1 w-full border" type="number" name="document_number" required />
             </div>
 
             <div>
-                <x-jet-label for="cellphone_number" value="{{ __('Numero de celular') }}" />
+                <x-jet-label for="cellphone_number" value="{{ __('Número de celular') }}" />
                 <x-jet-input id="cellphone_number" class="block mt-1 w-full" type="text" name="cellphone_number" :value="old('cellphone_number')" required />
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Correo electronico') }}" />
+                <x-jet-label for="email" value="{{ __('Correo electrónico') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
@@ -65,7 +65,7 @@
                 <x-jet-label class="mb-4" for="role" value="{{ __('Rol del usuario') }}" />
                 <select id="role" class="block mt-1 w-full" name="role" required>
                     <option value="" selected disabled hidden>Seleccione su rol</option>
-                    <option value="tc">Taller/Concecionario</option>
+                    <option value="tc">Taller/Concesionario</option>
                     <option value="Ins">Instructor</option>
                     <option value="Apr">Aprendiz</option>
                     <option value="Inv">Investigador</option>
@@ -73,7 +73,7 @@
             </div>
 
             <div class="hidden mt-4" id="tab-business">
-                <p class="mt-4 mb-4">{{ __('Datos del taller y/o concecionario') }}</p>                
+                <p class="mt-4 mb-4">{{ __('Datos del taller y/o concesionario') }}</p>                
                 
                 <div class="mt-4">
                     <x-jet-label for="nit" value="{{ __('NIT') }}" />
@@ -99,7 +99,7 @@
                             <x-jet-checkbox name="terms" id="terms"/>
 
                             <div class="ml-2"> Acepto 
-                                <a type="button"class="underline text-sm text-gray-600 hover:text-gray-900" data-te-toggle="modal" data-te-target="#exampleModalLong" data-te-ripple-initata-te-ripple-color="light">Politica de uso y tratamiento de datos</a>
+                                <a type="button"class="underline text-sm text-gray-600 hover:text-gray-900" data-te-toggle="modal" data-te-target="#exampleModalLong" data-te-ripple-initata-te-ripple-color="light">Política de uso y tratamiento de datos</a>
                             </div>
                             
                         </div>
@@ -136,11 +136,11 @@
   aria-hidden="true">
   <div
     data-te-modal-dialog-ref
-    class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1140px]">
+    class="pointer-events-none relative w-auto mb-7 translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1140px]">
     <div
       class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
       <div
-        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
+        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50 bg-blue-500 text-white">
         <!--Modal title-->
         <h5
           class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
@@ -355,7 +355,7 @@
     <div class="-4 flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
         <button
         type="button"
-        class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
+        class="inline-block rounded  px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal bg-blue-500 hover:bg-blue-700 text-white"
         data-te-modal-dismiss
         data-te-ripple-init
         data-te-ripple-color="light">

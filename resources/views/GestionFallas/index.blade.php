@@ -1,5 +1,5 @@
 <title>Gestión de Fallas y Ruidos</title>
-<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
+<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 	<!--Replace with your tailwind.css once created-->
 
 
@@ -287,7 +287,35 @@
                             @endif
                             @if($falla->estado == "Pendiente aprobacion")
                                 <div class="flex item-center justify-center">
-                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110" data-te-toggle="tooltip" title="Aprobar">
+                                    <div class="transform hover:text-[#36A9E1] hover:scale-110 
+                                    relative
+                                        before:content-[attr(data-tip)]
+                                        before:absolute
+                                        before:px-1 
+                                        before:left-1/2 before:top-1
+                                        before:w-max before:max-w-xs
+                                        before:-translate-x-1
+                                        before:-translate-y-4
+                                        before:bg-gray-700 before:text-white  
+                                        before:rounded-md before:opacity-0
+                                        before:transition-all
+
+                                        after:absolute
+                                        after:left-1/2 after:-bottom-3
+                                        after:h-0 after:w-0
+                                        after:-translate-x-1 
+                                        after:-translate-y-9
+                                        after:border-8
+                                        after:border-t-gray-700
+                                        after:border-r-transparent
+                                        after:border-b-transparent
+                                        after:border-l-transparent
+                                        after:opacity-0
+                                        after:transition-all
+
+                                    hover:before:opacity-100 hover:after:opacity-100"
+
+                                    data-tip= " Aprobar">
                                     
                                     <form action="{{ route('aprobacion-fallas.update', [$falla]) }}" method="POST">
                                     @csrf
@@ -295,7 +323,7 @@
                                     <input hidden id="active" name="estado" type="text" value="Aprobar"/>
 
                                         <button type="submit" class="">                       
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" mt-2 w-6 h-6 bg-green-500 hover:bg-green-400 text-white font-bold border-b-4 border-green-700 hover:border-green-500 rounded px-1">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                                         </svg>  
                                         </button>
@@ -304,7 +332,35 @@
                                 </div>
 
                                 <div class="flex item-center justify-center">
-                                    <div class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110" data-te-toggle="tooltip" title="Rechazar">
+                                    <div class="transform hover:text-[#36A9E1] hover:scale-110 
+                                        relative
+                                        before:content-[attr(data-tip)]
+                                        before:absolute
+                                        before:px-1 
+                                        before:left-2.5 before:top-0
+                                        before:w-max before:max-w-xs
+                                        before:-translate-x-0
+                                        before:-translate-y-4
+                                        before:bg-gray-700 before:text-white  
+                                        before:rounded-md before:opacity-0
+                                        before:transition-all
+
+                                        after:absolute
+                                        after:left-1/2 after:-bottom-3
+                                        after:h-0 after:w-0
+                                        after:-translate-x-0
+                                        after:-translate-y-10
+                                        after:border-8
+                                        after:border-t-gray-700
+                                        after:border-r-transparent
+                                        after:border-b-transparent
+                                        after:border-l-transparent
+                                        after:opacity-0
+                                        after:transition-all
+
+                                        hover:before:opacity-100 hover:after:opacity-100"
+
+                                        data-tip= " Rechazar">
                                     
                                     <form action="{{ route('aprobacion-fallas.update', [$falla]) }}" method="POST">
                                     @csrf
@@ -312,7 +368,7 @@
                                     <input hidden id="active" name="estado" type="text" value="Rechazar"/>
 
                                         <button type="submit" class="">                       
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mb-2 w-6 h-6 bg-rose-500 hover:bg-rose-400 text-white font-bold border-b-4 border-rose-700 hover:border-rose-500 rounded px-1">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
     
@@ -327,9 +383,38 @@
                                     @method('PUT')
                                     <input hidden id="active" name="estado" type="text" value="Autoasignar"/>                            
                                     <div class="flex item-center justify-center">
-                                        <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <button type="submit" class="" data-te-toggle="tooltip" title="Autoasignar">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <div class="transform hover:text-[#36A9E1] hover:scale-110 
+                                        relative
+                                        before:content-[attr(data-tip)]
+                                        before:absolute
+                                        before:px-1 before:-bottom-0
+                                        before:left-1/2 before:top-1
+                                        before:w-max before:max-w-xs
+                                        before:-translate-x-1
+                                        before:-translate-y-7
+                                        before:bg-gray-700 before:text-white  
+                                        before:rounded-md before:opacity-0
+                                        before:transition-all
+
+                                        after:absolute
+                                        after:left-1/2 after:-bottom-3
+                                        after:h-0 after:w-0
+                                        after:-translate-x-1 
+                                        after:-translate-y-7
+                                        after:border-8
+                                        after:border-t-gray-700
+                                        after:border-r-transparent
+                                        after:border-b-transparent
+                                        after:border-l-transparent
+                                        after:opacity-0
+                                        after:transition-all
+
+                                        hover:before:opacity-100 hover:after:opacity-100"
+
+                                        data-tip= " Autoasignar">
+                                            <button type="submit">
+                                            <!--class="" data-te-toggle="tooltip" title="Autoasignar"-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mb-2 mt-2 w-6 h-6 bg-purple-500 hover:bg-purple-400 text-white font-bold border-b-4 border-purple-700 hover:border-purple-500 rounded px-1">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                             </svg>                                                   
                                             </button>
@@ -342,7 +427,35 @@
                                 @method('PUT')
                                 <input hidden id="active" name="estado" type="text" value="Eliminar"/>                            
                                 <div class="flex item-center justify-center">
-                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                    <div class="transform hover:text-[#36A9E1] hover:scale-110 
+                                    relative
+                                    before:content-[attr(data-tip)]
+                                    before:absolute
+                                    before:px-1 before:-bottom-0
+                                    before:left-1/2 before:top-1
+                                    before:w-max before:max-w-xs
+                                    before:-translate-x-1
+                                    before:-translate-y-7
+                                    before:bg-gray-700 before:text-white  
+                                    before:rounded-md before:opacity-0
+                                    before:transition-all
+
+                                    after:absolute
+                                    after:left-1/2 after:-bottom-3
+                                    after:h-0 after:w-0
+                                    after:-translate-x-1 
+                                    after:-translate-y-7
+                                    after:border-8
+                                    after:border-t-gray-700
+                                    after:border-r-transparent
+                                    after:border-b-transparent
+                                    after:border-l-transparent
+                                    after:opacity-0
+                                    after:transition-all
+
+                                    hover:before:opacity-100 hover:after:opacity-100"
+
+                                    data-tip= " Eliminar">
                                         <button type="submit">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mb-2 
                                             w-6 h-6 bg-red-500 hover:bg-red-400 text-white font-bold border-b-4 border-red-700 hover:border-red-500 rounded  px-1">
@@ -357,10 +470,37 @@
 
                         @if ($user->role != 1)
                             <div class="flex item-center justify-center">
-                                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">            
+                                <div class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110
+                                relative
+                                before:content-[attr(data-tip)]
+                                before:absolute
+                                before:px-1 before:-bottom-0
+                                before:left-1/2 before:top-1
+                                before:w-max before:max-w-xs
+                                before:-translate-x-0 before:-translate-y-7
+                                before:bg-gray-700 before:text-white  
+                                before:rounded-md before:opacity-0
+                                before:transition-all
+
+                                after:absolute
+                                after:left-2.5 after:-bottom-3
+                                after:h-0 after:w-0
+                                after:-translate-x-0 
+                                after:-translate-y-7
+                                after:border-8
+                                after:border-t-gray-700
+                                after:border-r-transparent
+                                after:border-b-transparent
+                                after:border-l-transparent
+                                after:opacity-0
+                                after:transition-all
+
+                                hover:before:opacity-100 hover:after:opacity-100"
+
+                                data-tip= "Editar">            
                                     <a href="{{ route('gestion-fallas.edit', [$falla]) }}"  >
                                     <!--data-te-toggle="tooltip" title="Editar"-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mb-2 w-6 h-6 bg-red-500 hover:bg-red-400 text-white font-bold border-b-4 border-red-700 hover:border-red-500 rounded  px-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mb-2 mt-2 w-6 h-6 bg-yellow-500 hover:bg-yellow-400 text-white font-bold border-b-4 border-yellow-700 hover:border-yellow-500 rounded  px-1">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                     </svg>
                                     </a>
@@ -371,10 +511,38 @@
                             @csrf()
                             @method('DELETE')                            
                             <div class="flex item-center justify-center">
-                                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                    <button type="submit" >
+                                <div class="transform hover:text-[#36A9E1] hover:scale-110 
+                                relative
+                                before:content-[attr(data-tip)]
+                                before:absolute
+                                before:px-1 before:-bottom-0
+                                before:left-1/2 before:top-1
+                                before:w-max before:max-w-xs
+                                before:-translate-x-1
+                                before:-translate-y-7
+                                before:bg-gray-700 before:text-white  
+                                before:rounded-md before:opacity-0
+                                before:transition-all
+
+                                after:absolute
+                                after:left-1/2 after:-bottom-3
+                                after:h-0 after:w-0
+                                after:-translate-x-1 
+                                after:-translate-y-7
+                                after:border-8
+                                after:border-t-gray-700
+                                after:border-r-transparent
+                                after:border-b-transparent
+                                after:border-l-transparent
+                                after:opacity-0
+                                after:transition-all
+
+                                hover:before:opacity-100 hover:after:opacity-100"
+
+                                data-tip= " Eliminar">
+                                    <button type="submit">
                                     <!--class="" data-te-toggle="tooltip" title="Eliminar"-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mb-2 w-6 h-6 bg-red-500 hover:bg-yellow-400 text-white font-bold border-b-4 border-red-700 hover:border-red-500 rounded px-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mb-2 w-6 h-6 bg-red-500 hover:bg-red-400 text-white font-bold border-b-4 border-red-700 hover:border-red-500 rounded px-1">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                                     </svg>                                                   
                                     </button>
@@ -400,13 +568,14 @@
     $(document).ready(function() {
 
         var table = $('#fallasTable').DataTable({
-                responsive: true
+            paging: true,   
+            responsive: true,
+            pageLength: 10 // Cambia el número de elementos por página
             })
             .columns.adjust()
             .responsive.recalc();
     });
 </script>
-
 {{-- #Component modal --}}
 
     {{-- Alert component --}}
