@@ -187,7 +187,7 @@
                     </div> 
                 </div>
 
-                <div class="hidden hidden md:w-1/2 mb-6 px-3 md:mb-0" id="tab-motor">
+                <div class="hidden md:w-1/2 mb-6 px-3 md:mb-0" id="tab-motor">
                     <div class="w-full">
                         {{-- Tipo de Motor --}}                    
                         <x-jet-label class="inline-block mb-4" for="tipo_sistema4" value="Tipo de motor" /><span class="inline-block text-red-500">*</span>
@@ -219,7 +219,7 @@
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     {{-- Cargar grabación principal --}}                    
                     <x-jet-label class="inline-block mb-4" for="gragacion_principal" value="Cargar grabación principal" /><span class="inline-block text-red-500">*</span>
-                    <input id="gragacion_principal" name="gragacion_principal" value="{{old('gragacion_principal')}}" class="block w-full appearance-none bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 rounded" type="file" accept=".mp3" />
+                    <input id="gragacion_principal" name="gragacion_principal" value="{{old('gragacion_principal')}}" class="block w-full appearance-none bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="file" accept=".mp3" />
                     <x-jet-input-error for="gragacion_principal" class="mt-2" />
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">MP3 (MAX. 2MB).</p>                    
                 </div>

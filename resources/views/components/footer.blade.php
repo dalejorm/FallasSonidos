@@ -34,8 +34,7 @@ error_log($authUser);
         <p class="mb-4">
           <a href="{{ url('terms') }}" class="text-gray-700 dark:text-neutral-200"
             >Politica de uso y
-            tratamiento de datos</a
-          >
+            tratamiento de datos</a>
         </p>
         @auth
 
@@ -43,10 +42,9 @@ error_log($authUser);
         <p class="mb-4">
           <a href="{{ route('register') }}" class="text-gray-700  dark:text-neutral-200"
             >Registro de usuarios</a>
-        
         </p>
         <p class="mb-4">
-          <a href="" class="text-gray-700  dark:text-neutral-200"
+          <a href="{{ url('forgot-password') }}"  class="text-gray-700  dark:text-neutral-200"
             >Recuperacion de Contraseña</a>
         </p>
         @endauth        

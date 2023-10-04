@@ -28,10 +28,10 @@ class GestionFallaController extends Controller
         $user               = auth()->user();
         $fallas;
         if ($user->role == 1) {
-            $fallas       = ReporteFalla::orderBy('nombre_falla', 'ASC')->paginate(10);        
+            $fallas       = ReporteFalla::orderBy('nombre_falla', 'ASC')->paginate(100);        
         }
         if ($user->role != 1) {
-            $fallas       = ReporteFalla::where('id_user', '=',$user->id )->paginate(10);        
+            $fallas       = ReporteFalla::where('id_user', '=',$user->id )->paginate(100);        
         }                
         return view('GestionFallas.index', compact('fallas','user'));
     }

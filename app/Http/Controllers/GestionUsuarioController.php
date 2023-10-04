@@ -22,7 +22,7 @@ class GestionUsuarioController extends Controller
     {     
         $user               = auth()->user();  
         error_log(Auth::user()->role);           
-        $users       = User::orderBy('name', 'ASC')->paginate(10);      
+        $users       = User::orderBy('name', 'ASC')->paginate(100);      
         return view('GestionUsuarios.index', compact('users'));
     }
 
