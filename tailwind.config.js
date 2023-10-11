@@ -55,6 +55,7 @@ module.exports = {
                 'orange-clear': '#FBB06A',
                 'orange': '#FF820D',
                 'Gray-Palette': '#CDCDCD',
+                'Gray-clear': '#F3F4F6',
               },
         },
     }    
