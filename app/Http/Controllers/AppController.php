@@ -63,9 +63,70 @@ class AppController extends Controller
                 $alerta = true; 
             }
         }
-        
-        
 
+        if (!is_null($modeloBusqueda)) {
+            // Realiza la búsqueda
+            $results = ReporteFalla::where('estado', '=', 'Aprobado')
+                ->where('modelo', '=', $modeloBusqueda)
+                ->where('marca', '=', $marcaBusqueda)
+                ->where('sistema_falla', '=', $sistemaBusqueda)
+                ->where(function ($query) use ($cadenaBusqueda) {
+                    $query->orWhere('nombre_falla', 'LIKE', '%' . $cadenaBusqueda . '%')
+                        ->orWhere('descripcionusuario_falla', 'LIKE', '%' . $cadenaBusqueda . '%')
+                        ->orWhere('descripcion_reparacion', 'LIKE', '%' . $cadenaBusqueda . '%');
+                })->get();
+        
+            // Comprueba si no se encontraron resultados
+            if (count($results) > 0) {
+                $alerta = false; 
+            } else {
+                $alerta = true; 
+            }
+        }
+
+        if (!is_null($marcaBusqueda)) {
+            // Realiza la búsqueda
+            $results = ReporteFalla::where('estado', '=', 'Aprobado')
+                ->where('modelo', '=', $modeloBusqueda)
+                ->where('marca', '=', $marcaBusqueda)
+                ->where('sistema_falla', '=', $sistemaBusqueda)
+                ->where(function ($query) use ($cadenaBusqueda) {
+                    $query->orWhere('nombre_falla', 'LIKE', '%' . $cadenaBusqueda . '%')
+                        ->orWhere('descripcionusuario_falla', 'LIKE', '%' . $cadenaBusqueda . '%')
+                        ->orWhere('descripcion_reparacion', 'LIKE', '%' . $cadenaBusqueda . '%');
+                })->get();
+        
+            // Comprueba si no se encontraron resultados
+            if (count($results) > 0) {
+                $alerta = false; 
+            } else {
+                $alerta = true; 
+            }
+        }
+
+
+        if (!is_null($sistemaBusqueda)) {
+            // Realiza la búsqueda
+            $results = ReporteFalla::where('estado', '=', 'Aprobado')
+                ->where('modelo', '=', $modeloBusqueda)
+                ->where('marca', '=', $marcaBusqueda)
+                ->where('sistema_falla', '=', $sistemaBusqueda)
+                ->where(function ($query) use ($cadenaBusqueda) {
+                    $query->orWhere('nombre_falla', 'LIKE', '%' . $cadenaBusqueda . '%')
+                        ->orWhere('descripcionusuario_falla', 'LIKE', '%' . $cadenaBusqueda . '%')
+                        ->orWhere('descripcion_reparacion', 'LIKE', '%' . $cadenaBusqueda . '%');
+                })->get();
+        
+            // Comprueba si no se encontraron resultados
+            if (count($results) > 0) {
+                $alerta = false; 
+            } else {
+                $alerta = true; 
+            }
+        }
+
+        //------------------------------------------------------------------------
+        
         if(is_null($cadenaBusqueda) and $modeloBusqueda == 'nulo' and $marcaBusqueda == 'nulo' and $sistemaBusqueda == 'nulo' ){
             error_log("Entro sin nada");
             $results = ReporteFalla::where('estado','=', 'Aprobado')->get();
