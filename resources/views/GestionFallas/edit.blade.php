@@ -7,7 +7,7 @@
         </div>
         
     </x-slot>
-
+    <x-buttonGoBack />
     <form action="{{ route('gestion-fallas.update', [$reportefalla]) }}" method="POST" enctype="multipart/form-data" class="max-w-7xl  pb-6 lg:w-11/12  sm:w-full sm:mx-auto ">
     @csrf
     @method('PUT')

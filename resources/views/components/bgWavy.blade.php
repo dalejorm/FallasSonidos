@@ -1,5 +1,5 @@
 <svg width="100%" height="100%" viewBox="0 0 1451 467" fill="none" xmlns="http://www.w3.org/2000/svg"
-    class="relative bottom-48 z-0">
+    class="relative bottom-48 z-0 invisible sm:visible md:visible lg:visible xl:visible 2xl:visible">
     <g opacity="0.3">
         <path
             d="M1222.18 321.24C1222.18 321.24 999.665 325.634 880.344 215.089C761.024 104.545 648.448 63.1923 503.705 230.693C358.947 398.18 222.756 493.347 1 349.319"

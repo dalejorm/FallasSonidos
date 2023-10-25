@@ -7,7 +7,7 @@
         </div>
         
     </x-slot>
-
+    <x-buttonGoBack />
 <div id='recipients' class="max-w-7xl w-11/12 pb-6 mx-auto static p-8 mt-6 rounded shadow bg-white ">
     <h2 class="p-2 font-semibold text-xl text-gray-800 leading-tight">Datos del vehículo</h2>
     <div class="rounded-t-lg overflow-hidden border border-l border-r border-gray-400 flex justify-center p-8">

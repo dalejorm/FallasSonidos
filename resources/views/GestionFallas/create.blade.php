@@ -5,9 +5,8 @@
             {{ __('Crear registro de Falla y Ruido') }}
         </h2>        
         </div>
-        
     </x-slot>
-
+    <x-buttonGoBack />  
     <form action="{{ route('gestion-fallas.store') }}" method="POST" enctype="multipart/form-data" class="max-w-7xl  pb-6 lg:w-11/12  sm:w-full mx-auto ">
     @csrf
     <div id='recipients' class="static p-8 mt-6 mx-6 rounded shadow  bg-white">

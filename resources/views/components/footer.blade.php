@@ -5,12 +5,11 @@ error_log($authUser);
 <!-- Footer container -->
 <footer
   class="bg-white mt-0 text-center text-gray-700 dark:bg-neutral-600 dark:text-neutral-400 lg:text-left" style="display: block;">
-  <div
-    class="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
+  <div class="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
   </div>
 
   <!-- Main container div: holds the entire content of the footer, including four sections (Tailwind Elements, Products, Useful links, and Contact), with responsive styling and appropriate padding/margins. -->
-  <div class="mx-6 py-10 text-center md:text-left">
+  <div class="mx-6 py-10  text-left sm:text-left md:justify-start md:text-left lg:text-left xl:text-left 2xl:text-left">
     <div class="grid-1 grid gap-8 md:grid-cols-1 lg:grid-cols-3">
       <!-- Tailwind Elements section -->
       <div class="">
@@ -18,7 +17,7 @@ error_log($authUser);
           class="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start text-gray-900 ">          
           Sistema de Gestión de Conocimiento de Fallas y Ruidos Vehiculares (SGCFRV)
         </h6>
-        <p class="text-gray-700">
+        <p class="text-gray-700 md:justify-start">
           Este es un sistema desarrollado por el Sena, con el fin de caracterizar y 
           sistematizar la información correspondiente con los ruidos y las fallas vehiculares;
            hace parte de un proyecto el cual su finalidad es investigativa y formativa.
@@ -26,9 +25,9 @@ error_log($authUser);
       </div>
      
       <!-- Useful links section -->
-      <div class="ml-20">
+      <div class="ml-0 lg:ml-20 xl:ml-20 2xl:ml-20 text-left sm:text-left justify-start md:text-left ">
         <h6
-          class="mb-4 flex justify-center font-semibold uppercase md:justify-start text-gray-900">
+          class="mb-4 flex font-semibold uppercase md:justify-start text-gray-900">
           Mapa de sitio
         </h6>
         <p class="mb-4">
@@ -37,7 +36,7 @@ error_log($authUser);
             tratamiento de datos</a>
         </p>
         @auth
-
+        
         @else
         <p class="mb-4">
           <a href="{{ route('register') }}" class="text-gray-700  dark:text-neutral-200"
@@ -50,12 +49,12 @@ error_log($authUser);
         @endauth        
       </div>
       <!-- Contact section -->
-      <div>
+      <div class="text-left sm:text-left md:text-left lg:text-left xl:text-left 2xl:text-left lg:items-center xl:items-center 2xl:items-center">
         <h6
-          class="mb-4 flex justify-center font-semibold uppercase md:justify-start text-gray-900">
+          class="mb-4 flex font-semibold uppercase md:justify-start text-gray-900">
           Contacto
         </h6>
-        <p class="mb-4  text-gray-700 flex items-center justify-center md:justify-start ">
+        <p class="mb-4  text-gray-700 flex md:justify-start text-left sm:text-left md:text-left lg:text-center xl:text-center 2xl:text-center lg:items-center xl:items-center 2xl:items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -68,7 +67,7 @@ error_log($authUser);
           </svg>
           Manizales, Km 10 Vía al Magdalena, CO
         </p>
-        <p class="mb-4 flex items-center justify-center md:justify-start">
+        <p class="mb-4 flex md:justify-start text-left sm:text-left md:text-left lg:text-center xl:text-center 2xl:text-center lg:items-center xl:items-center 2xl:items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

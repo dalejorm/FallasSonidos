@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
+        <h2 class="bg-white grid grid-cols-2 content-around static p-8  rounded shadow font-semibold text-xl text-gray-800 leading-tight border-4 border-y-[#CDCDCD]">
+            {{ __('Perfil') }}
         </h2>
     </x-slot>
 

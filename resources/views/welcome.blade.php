@@ -22,7 +22,8 @@
 </head>
 
 <body class="antialiased bg-[#F3F4F6]">
-    <div class="flex justify-between bg-white">
+    <div class="flex justify-center items-center bg-white">
+    <div class="flex justify-between max-w-7xl bg-white sm:flex-row sm:w-full lg:w-11/12">
         <!-- Logo -->
         <div class="flex px-4 sm:px-6 lg:px-8">
             <a href="{{ route('dashboard') }}">
@@ -30,10 +31,10 @@
             </a>
         </div>
         @if (Route::has('login'))
-            <div class="hidden top-0 right-0 px-6 py-4 sm:block">
+            <div class=" top-0 right-0 px-6 py-4 sm:block items-center">
                 @auth
                     <a href="{{ url('/dashboard') }}"
-                        class="drop-shadow-xl inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 focus:ring-opacity-50 border-b-4 border-sky-700 hover:border-sky-500 rounded">
+                        class="drop-shadow-xl inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 focus:ring-opacity-50 border-b-4 border-sky-700 hover:border-sky-500 rounded m-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -44,18 +45,18 @@
                     </a>
                 @else
                     <a href="{{ route('login') }}"
-                        class="drop-shadow-xl inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-400 hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24"
+                        class="drop-shadow-xl inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-400 hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                         </svg>
 
-                        Ingreso
+                        Ingreso 
                     </a>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="drop-shadow-xl ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-500 bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-400 focus:ring-opacity-50 border-b-4 border-gray-700 hover:border-gray-500 rounded">
+                            class="drop-shadow-xl inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-500 bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-400 focus:ring-opacity-50 border-b-4 border-gray-700 hover:border-gray-500 rounded m-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-5 h-5 mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -69,10 +70,11 @@
             </div>
         @endif
     </div>
+    </div>
     <x-backgroundSup />
-    <main class="max-h-fit flex flex-col sm:justify-center items-center pt-4 sm:pt-10">
+    <main class="flex flex-col justify-center items-center pt-4 sm:h-full md: lg:w-11/12 xl: 2xl: ">
         <x-iconGear />
-        <div id="welcomeT" class="absolute top-30 z-30 overflow-hidden shadow sm:rounded-lg max-w-5xl m-6 bg-white">
+        <div class="top-30 z-30 flex justify-center items-center overflow-hidden shadow sm:rounded-lg max-w-5xl m-6 bg-white sm:absolute md:absolute lg:absolute xl:absolute 2xl:absolute">
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="p-6">
                     <div class="flex items-center">
@@ -117,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <x-bgWavy />
+        <x-bgWavy class="py-72 sm:m-0 md:m-0 lg:m-0 xl: 2xl:m-0"/>
 
     </main>
     <x-backgroundInf />
