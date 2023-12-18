@@ -102,6 +102,15 @@
                         </select>                        
                     </div>
                 </div>
+
+                <div class="w-full md:w-1/2 px-3  mb-6 md:mb-0">
+                    {{-- codigoVIN --}}                    
+                    <x-jet-label class="inline-block mb-4" for="codigo_vin" value="codigo_vin" /><span class="inline-block text-red-500">*</span>
+                        <x-jet-input id="codigo_vin" name="codigo_vin" class="block w-full"
+                        value="{{ isset($reportefalla) ? $reportefalla->codigo_vin : old('codigo_vin') }}"
+                        type="text" placeholder="codigo_vin" data-error="" minlength="5" maxlength="190"/>
+                        <x-jet-input-error for="codigo_vin" class="mt-2" /> 
+                </div>
             </div>
         </div>
     </div>
@@ -239,7 +248,15 @@
                     <x-jet-label class="inline-block mb-4" for="ubicacion_grabacionprincipal" value="Lugar de grabación en el vehiculo" /><span class="inline-block text-red-500">*</span>
                     <x-jet-input id="ubicacion_grabacionprincipal" value="{{ isset($reportefalla->ubicacion_grabacionprincipal) ? $reportefalla->ubicacion_grabacionprincipal : old('ubicacion_grabacionprincipal') }}" name="ubicacion_grabacionprincipal" class="block w-full" type="text"  placeholder="Lugar de grabación en el vehiculo" data-error="" minlength="5" maxlength="190" required />
                     <x-jet-input-error for="ubicacion_grabacionprincipal" class="mt-2" />                    
-                </div>                 
+                </div> 
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    {{-- Imagen Pieza--}} 
+                    
+                    <x-jet-label class="inline-block mb-4 text-sm font-medium text-gray-900 dark:text-white" for="imagen_pieza" value="cargar imagen"/>
+                        <input  id="imagen_pieza" name="imagen_pieza" value="{{old('imagen_pieza')}}" class="block w-full appearance-none bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="file" accept=".jpg"/>
+                        <x-jet-input-error for="imagen_pieza" class="mt-2" />
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help"> JPG (MAX. 800x400px).</p>                  
+                </div>                
             </div>                          
         </div>
     </div>

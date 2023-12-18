@@ -77,6 +77,7 @@ class GestionFallaController extends Controller
         $reportefalla->tipo_combustible = $request->get('tipo_combustible');
         $reportefalla->transmision = $request->get('transmision');
         $reportefalla->direccion = $request->get('direccion');
+        $reportefalla->codigo_vin = $request->get('codigo_vin');
         $reportefalla->descripcionusuario_falla = $request->get('descripcionusuario_falla');
         $reportefalla->nombre_falla = $request->get('nombre_falla');
         $reportefalla->diagnostico_falla = $request->get('diagnostico_falla');
@@ -99,6 +100,7 @@ class GestionFallaController extends Controller
         $reportefalla->elemento_falla = $request->get('elemento_falla');
         $reportefalla->descripcion_reparacion = $request->get('descripcion_reparacion');
         $reportefalla->ubicacion_grabacionprincipal = $request->get('ubicacion_grabacionprincipal');
+        $reportefalla->imagen_pieza = $request->get('imagen_pieza');
         $reportefalla->ubicacion_grabacion2 = $request->get('ubicacion_grabacion2');
         $reportefalla->ubicacion_grabacion3 = $request->get('ubicacion_grabacion3');
         $reportefalla->ubicacion_grabacion4 = $request->get('ubicacion_grabacion4');
@@ -111,9 +113,50 @@ class GestionFallaController extends Controller
         
         //error_log($reportefalla);
         
+        // Validar el tamaño de la grabación principal
+    if ($request->hasFile('gragacion_principal') && $request->file('gragacion_principal')->getSize() > 2097152) {
+        // El tamaño es mayor a 2 MB (2097152 bytes)
+        return redirect()->back()->with('estado', 'El tamaño de la grabación principal debe ser menor a 2 megabytes.');
+    }
+
+    // Validar el tamaño de la imagen de la pieza
+    if ($request->hasFile('imagen_pieza') && $request->file('imagen_pieza')->getSize() > 2097152) {
+        // El tamaño es mayor a 2 MB (2097152 bytes)
+        return redirect()->back()->with('estado', 'El tamaño de la imagen de la pieza debe ser menor a 2 megabytes.');
+    }
+
+    // Validar el tamaño de la grabación 2
+    if ($request->hasFile('gragacion_2') && $request->file('gragacion_2')->getSize() > 2097152) {
+        // El tamaño es mayor a 2 MB (2097152 bytes)
+        return redirect()->back()->with('estado', 'El tamaño de la grabación 2 debe ser menor a 2 megabytes.');
+    }
+
+    // Validar el tamaño de la grabación 3
+    if ($request->hasFile('gragacion_3') && $request->file('gragacion_3')->getSize() > 2097152) {
+        // El tamaño es mayor a 2 MB (2097152 bytes)
+        return redirect()->back()->with('estado', 'El tamaño de la grabación 3 debe ser menor a 2 megabytes.');
+    }
+
+    // Validar el tamaño de la grabación 4
+    if ($request->hasFile('gragacion_4') && $request->file('gragacion_4')->getSize() > 2097152) {
+        // El tamaño es mayor a 2 MB (2097152 bytes)
+        return redirect()->back()->with('estado', 'El tamaño de la grabación 4 debe ser menor a 2 megabytes.');
+    }
+
+    // Validar el tamaño de la grabación 5
+    if ($request->hasFile('gragacion_5') && $request->file('gragacion_5')->getSize() > 2097152) {
+        // El tamaño es mayor a 2 MB (2097152 bytes)
+        return redirect()->back()->with('estado', 'El tamaño de la grabación 5 debe ser menor a 2 megabytes.');
+    }
+
         if($request->hasFile('gragacion_principal')){
             $audio1= $request->file('gragacion_principal')->store('biblio_grabaciones','public');
             $reportefalla->gragacion_principal = $audio1;
+        }
+
+        if ($request->hasFile('imagen_pieza')) {
+            $imagenPiezaPath = $request->file('imagen_pieza')->store('biblio_image', 'public');
+            $reportefalla->imagen_pieza = $imagenPiezaPath;
         }
 
         $audio2= $request->get('gragacion_2');
@@ -162,6 +205,7 @@ class GestionFallaController extends Controller
         $gestionfalla->tipo_combustible = $request->get('tipo_combustible');
         $gestionfalla->transmision = $request->get('transmision');
         $gestionfalla->direccion = $request->get('direccion');
+        $gestionfalla->codigo_vin = $request->get('codigo_vin');
         $gestionfalla->descripcionusuario_falla = $request->get('descripcionusuario_falla');
         $gestionfalla->nombre_falla = $request->get('nombre_falla');
         $gestionfalla->diagnostico_falla = $request->get('diagnostico_falla');
@@ -184,6 +228,7 @@ class GestionFallaController extends Controller
         $gestionfalla->elemento_falla = $request->get('elemento_falla');
         $gestionfalla->descripcion_reparacion = $request->get('descripcion_reparacion');
         $gestionfalla->ubicacion_grabacionprincipal = $request->get('ubicacion_grabacionprincipal');
+        $gestionfalla->imagen_pieza = $request->get('imagen_pieza');
         $gestionfalla->ubicacion_grabacion2 = $request->get('ubicacion_grabacion2');
         $gestionfalla->ubicacion_grabacion3 = $request->get('ubicacion_grabacion3');
         $gestionfalla->ubicacion_grabacion4 = $request->get('ubicacion_grabacion4');
@@ -195,13 +240,18 @@ class GestionFallaController extends Controller
         }
         
         //error_log($reportefalla);
-        
+
         if($request->hasFile('gragacion_principal')){
             Storage::delete("public/$gestionfalla->gragacion_principal");
             $audio1= $request->file('gragacion_principal')->store('biblio_grabaciones','public');
             $gestionfalla->gragacion_principal = $audio1;
         }
 
+        if($request->hasFile('imagen_pieza')){
+            Storage::delete("public/$gestionfalla->imagen_pieza");
+            $imagenPiezaPath= $request->file('imagen_pieza')->store('biblio_image','public');
+            $gestionfalla->imagen_pieza = $imagenPiezaPath;
+        }
         $audio2= $request->get('gragacion_2');
         if($request->hasFile('gragacion_2')){
             Storage::delete("public/$gestionfalla->gragacion_2");
@@ -289,6 +339,7 @@ class GestionFallaController extends Controller
         if($gestionfalla->estado == "Pendiente aprobacion"){
             error_log("Se puede eliminar");
             Storage::delete('public/' . $gestionfalla->gragacion_principal);
+            Storage::delete('public/' . $gestionfalla->imagen_pieza);
             if($gestionfalla->gragacion_2 == null){
                 Storage::delete('public/' . $gestionfalla->gragacion_2);
             }
@@ -307,6 +358,7 @@ class GestionFallaController extends Controller
             if($user->role == "1"){
                 error_log("Se puede eliminar");
                 Storage::delete('public/' . $gestionfalla->gragacion_principal);
+                Storage::delete('public/' . $gestionfalla->imagen_pieza);
                 if($gestionfalla->gragacion_2 == null){
                     Storage::delete('public/' . $gestionfalla->gragacion_2);
                 }

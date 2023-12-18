@@ -75,6 +75,11 @@
                     <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->direccion }}</p>                       
                 </div>
             </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- codigo_VIN --}}                    
+                <x-jet-label class="inline-block mb-4" for="codigo_vin" value="codigo_vin" /><span class="inline-block text-red-500">:</span>
+                <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->codigo_vin }}</p>                                           
+            </div>
         </div>
     </div>
 </div>
@@ -162,7 +167,13 @@
                 {{-- Lugar de grabación en el vehiculo --}}                    
                 <x-jet-label class="inline-block mb-4" for="ubicacion_grabacionprincipal" value="Lugar de grabación en el vehiculo" /><span class="inline-block text-red-500">:</span>
                 <p class="text-2xl text-gray-700 py-3 px-4 pr-8">{{ $reportefalla->ubicacion_grabacionprincipal }}</p>           
-            </div>                 
+            </div>
+            
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                {{-- Imagen de la pieza --}}
+                <x-jet-label class="inline-block mb-4" for="imagen_pieza" value="Imagen de la pieza" /><span class="inline-block text-red-500">:</span>
+                <img src="{{ asset('storage/' . $reportefalla->imagen_pieza) }}" alt="Imagen de la pieza">
+            </div>
         </div>                          
     </div>
 </div>
